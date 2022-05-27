@@ -21,7 +21,7 @@ body{
 .sidebar{
     position: fixed;
     height: 100%;
-    width: 300px;
+    width: 240px;
     background-color: #0A2558;
     color: #fff;
     overflow: auto;
@@ -89,8 +89,8 @@ body{
     position: relative;
     /* min-height: 100vh; */
     height: auto !important;
-    width: calc(100% - 300px);
-    left: 300px;
+    width: calc(100% - 240px);
+    left: 240px;
     transition: all 0.5s ease;
 }
 .sidebar.active ~ .home-section{
@@ -99,9 +99,9 @@ body{
 } 
 .home-section nav{
     position: fixed;
-    width: calc(100% - 300px);
-    left: 300px;
-    height: 70px;
+    width: calc(100% - 240px);
+    left: 240px;
+    height: 80px;
     background-color: #fff;
     padding: 0px 20px;
     display: flex;
@@ -247,6 +247,7 @@ nav .search-box .bx-search{
 .home-content .overview-boxes .indicator{
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 .overview-boxes .indicator i{
     width: 20px;
@@ -298,11 +299,11 @@ nav .search-box .bx-search{
 .home-section .sales-boxes{
     display: flex;
     justify-content: space-between;
-    padding:80px;
+    padding:20px;
 }
 /* ===== * Left side * ===== */
 .home-section .sales-boxes .recent-sales{
-    width: auto;
+    width: 65%;
     background-color: #fff;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
     padding: 20px;
@@ -468,7 +469,7 @@ table tr td .btn-detail:hover{
 @media screen and (max-width: 1078px){
     .home-section .sales-boxes{
         flex-direction: column;
-        padding: 80px
+        padding: 20px
     }
     .home-section .sales-boxes .box{
         width: 100% !important;

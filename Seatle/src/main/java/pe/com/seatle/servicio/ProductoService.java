@@ -1,0 +1,12 @@
+package pe.com.seatle.servicio;
+
+import java.util.List;
+import pe.com.seatle.model.Producto;
+
+public interface ProductoService {
+    public List<Producto> listarProducto();
+    public void guardar(Producto producto);
+    public Producto encontrarProducto (Long producto);
+    public void eliminar(Long producto);
+                
+}

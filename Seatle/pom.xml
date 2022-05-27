@@ -8,7 +8,7 @@
         <version>2.5.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>pe.com.jp</groupId>
+    <groupId>pe.com.seatle</groupId>
     <artifactId>Seatle</artifactId>
     <version>1.0</version>
     <name>Seatle</name>
