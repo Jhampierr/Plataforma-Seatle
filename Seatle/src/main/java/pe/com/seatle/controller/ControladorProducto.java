@@ -27,9 +27,9 @@ import pe.com.seatle.util.CheckIP;
 import pe.com.seatle.model.Grado;
 import pe.com.seatle.model.Producto;
 import pe.com.seatle.model.TipoProducto;
-import pe.com.seatle.servicio.CatProductoService;
 import pe.com.seatle.servicio.ProductoService;
 import pe.com.seatle.servicio.TipoProductoService;
+import pe.com.seatle.servicio.AlumnoService;
 
 @Controller
 @Slf4j
@@ -42,7 +42,7 @@ public class ControladorProducto {
     private TipoProductoService tipoProductoService;
 
     @Autowired
-    private CatProductoService catProductoService;
+    private AlumnoService catProductoService;
     
     String fechaString = LocalDate.now().toString();
     

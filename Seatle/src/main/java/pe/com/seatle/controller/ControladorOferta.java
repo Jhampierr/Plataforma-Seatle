@@ -19,15 +19,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pe.com.seatle.util.CheckIP;
 import pe.com.seatle.model.Oferta;
 import pe.com.seatle.model.Producto;
-import pe.com.seatle.servicio.OfertaService;
 import pe.com.seatle.servicio.ProductoService;
+import pe.com.seatle.servicio.AsistenciaService;
 
 @Controller
 @Slf4j
 public class ControladorOferta {
 
     @Autowired
-    private OfertaService ofertaService;
+    private AsistenciaService ofertaService;
 
     @Autowired
     private ProductoService productoService;

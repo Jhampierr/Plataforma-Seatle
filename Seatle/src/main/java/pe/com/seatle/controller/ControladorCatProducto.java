@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pe.com.seatle.util.CheckIP;
 import pe.com.seatle.model.Grado;
-import pe.com.seatle.servicio.CatProductoService;
+import pe.com.seatle.servicio.AlumnoService;
 
 @Controller
 @Slf4j
 public class ControladorCatProducto {
    
     @Autowired
-    private CatProductoService catProductoService;
+    private AlumnoService catProductoService;
     
     String fechaString = LocalDate.now().toString();
     

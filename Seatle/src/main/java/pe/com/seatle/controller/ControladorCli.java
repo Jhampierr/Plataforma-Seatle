@@ -28,10 +28,10 @@ import pe.com.seatle.model.Producto;
 import pe.com.seatle.model.Reserva;
 import pe.com.seatle.servicio.ClienteService;
 import pe.com.seatle.servicio.EmpleadoService;
-import pe.com.seatle.servicio.OfertaService;
 import pe.com.seatle.servicio.PedidoService;
 import pe.com.seatle.servicio.ProductoService;
 import pe.com.seatle.servicio.ReservaService;
+import pe.com.seatle.servicio.AsistenciaService;
 
 @Controller
 @Slf4j
@@ -53,7 +53,7 @@ public class ControladorCli {
     private ProductoService productoService;
 
     @Autowired
-    private OfertaService ofertaService;
+    private AsistenciaService ofertaService;
     
     String fechaString = LocalDate.now().toString();
     
