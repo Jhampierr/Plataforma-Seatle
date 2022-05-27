@@ -27,13 +27,21 @@ public class Practica implements Serializable{
     @NotEmpty
     private String clase;//Semana o sesion
     
-    @NotEmpty
+    @Column(name="contenido_texto")
     private String contenidoTexto;//Explicacion de la practica
-    private String contenidoarchivo;
     
+    @Column(name="contenido_archivo")
+    private String contenidoArchivo;
+    
+    @Column(name="fecha_limite")
     private String fechaLimite;
+    
+    @Column(name="fecha_entrega")
     private String fechaDeEntrega;
+    
+    @Column(name="numero_pregunta")
     private String numeroPregunta;
+    
     private String pregunta;
     private String respuesta;
     private String puntos;

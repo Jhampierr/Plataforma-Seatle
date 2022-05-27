@@ -8,8 +8,8 @@ import lombok.Data;
 
 @Data
 @Entity //Para persistencia de datos
-@Table(name ="pedido")
-//Esto se usa porque en la bd dice "pedido", pero en la clase java dice "AulaVirtual"
+@Table(name ="aula_virtual")
+//Esto se usa porque en la bd dice "aula_virtual", pero en la clase java dice "AulaVirtual"
 public class AulaVirtual implements Serializable {
     
     private static final long serialVersionUID = 1L;

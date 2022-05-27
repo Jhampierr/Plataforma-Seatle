@@ -26,9 +26,12 @@ public class Material implements Serializable{
     
     @NotEmpty
     private String clase;//Semana o sesion
-        
+    
+    @Column(name="contenido_texto")
     private String contenidoTexto;//Explicacion del material
-    private String contenidoarchivo;
+    
+    @Column(name="contenido_archivo")
+    private String contenidoArchivo;
         
     private String fechaUpdate;
     private String hostName;

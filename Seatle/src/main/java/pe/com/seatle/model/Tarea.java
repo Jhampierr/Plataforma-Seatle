@@ -27,11 +27,16 @@ public class Tarea implements Serializable{
     @NotEmpty
     private String clase;//Semana o sesion
     
-    @NotEmpty
+    @Column(name="contenido_texto")
     private String contenidoTexto;//Explicacion de la tarea
-    private String contenidoarchivo;
     
+    @Column(name="contenido_archivo")
+    private String contenidoArchivo;
+    
+    @Column(name="fecha_limite")
     private String fechaLimite;
+    
+    @Column(name="fecha_entrega")
     private String fechaDeEntrega;
     private String entrega;
     private String puntos;

@@ -29,6 +29,14 @@ public class Profesor implements Serializable{
     @NotEmpty
     private String correo;
     
+    @ManyToOne
+    @JoinColumn(name="grado_id_grado")
+    private Grado grado;
+    
+    @ManyToOne
+    @JoinColumn(name="seccion_id_seccion")
+    private Seccion seccion;
+    
     private String fechaUpdate;
     private String hostName;
     private String ip;
