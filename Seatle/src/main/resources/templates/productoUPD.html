@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Datos del Producto</title>
+        <tag th:replace="layout/plantilla :: head"></tag>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+
+        <section class="home-section">
+            <nav th:replace="layout/plantilla :: nav"></nav>
+            <div class="sales-boxes">
+                <div class="recent-sales box">
+                    <div class="title">[[#{producto.formulario}]]</div>
+
+                    <br/>
+                    <form th:action="@{/guardarproducto}" th:object="${producto}" 
+                          method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="idProducto" th:field="*{idProducto}"/>
+                        <br/>
+                        <label for="nombre">[[#{producto.nombre}]]: </label>
+                        <input type="text" name="nombre" th:field="*{nombre}"/>
+                        <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error Nombre</span>   
+                        <br/>
+                        <label for="imagen">Imagen:</label>
+                        <input type="file" name="file"/>
+                        <span th:if="${#fields.hasErrors('imagen')}" th:errors="*{imagen}">Error Foto</span>   
+                        <br/>
+                        <label for="precio">[[#{producto.precio}]]: </label>
+                        <input type="number" step="0.01" min="1" name="precio" th:field="*{precio}"/>
+                        <span th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}">Error Precio:</span>
+                        <br/>
+                        <label for="tipoProd">[[#{producto.tipoProd}]]: </label>
+                        <select name="tipoProd" th:field="*{tipoProd}">
+                            <option th:each="tipoProd:${tipoProd}"
+                                    th:value="${tipoProd.idTipoProducto}"
+                                    th:text="${tipoProd.descripcion}"		
+                                    />
+                        </select>
+                        <span th:if="${#fields.hasErrors('tipoProd')}" th:errors="*{tipoProd}">Error Tipo de Producto</span>
+                        <br/>
+                        <label for="catProd">[[#{producto.catProd}]]: </label>
+                        <select name="catProd" th:field="*{catProd}">
+                            <option th:each="catProd:${catProd}"
+                                    th:value="${catProd.idCatProducto}"
+                                    th:text="${catProd.descripcion}"		
+                                    />
+                        </select>
+                        <span th:if="${#fields.hasErrors('catProd')}" th:errors="*{catProd}">Error Categoria Producto</span>
+                        <br/>
+                        <label for="detalle">[[#{producto.detalle}]]: </label>
+                        <input type="text" size="45" name="detalle" th:field="*{detalle}"/>
+                        <span th:if="${#fields.hasErrors('detalle')}" th:errors="*{detalle}">Error Detalle</span>
+                        <br/>
+                        <div class="button">
+                            <input type="submit" name="guardarproducto" th:value="#{accion.guardar}"/>
+                        </div>
+                        
+                    </form>
+                    <div class="button2">
+                        <a th:href="@{/producto}">[[#{accion.regresar}]]</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="./js/main.js"></script> 
+    </body>
+</html>

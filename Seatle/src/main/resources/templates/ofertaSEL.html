@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Oferta</title>
+        <tag th:replace="layout/plantilla :: head"></tag>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+
+        <section class="home-section">
+            <nav th:replace="layout/plantilla :: nav"></nav>
+            <div class="sales-boxes">
+                <div class="recent-sales box">
+                    <div class="title">[[#{oferta.formulario}]]</div>
+
+                    <div th:if="${oferta != null and !oferta.empty}">
+                        <div class="sales-details">
+                            <table border="1">
+                                <tr>
+                                    <th>[[#{oferta.estado}]]</th>
+                                    <th>[[#{oferta.fechaInicio}]]</th>
+                                    <th>[[#{oferta.fechaFinal}]]</th>
+                                    <th>[[#{oferta.idProducto}]]</th>
+                                    <th>[[#{oferta.precioOferta}]]</th>
+                                    <th>[[#{producto.tipoProd}]]</th>
+                                    <th>[[#{producto.catProd}]]</th>
+                                    <th>[[#{oferta.detalle}]]</th>
+                                    <th>[[#{accion.editar}]]</th>
+                                    <th>[[#{accion.eliminar}]]</th>
+                                </tr>
+
+                                <tr th:each="oferta : ${oferta}">
+                                    <td th:text="${oferta.estado}">Mostrar Estado</td>
+                                    <td th:text="${oferta.fechaInicio}">Mostrar Fecha Inicio</td>
+                                    <td th:text="${oferta.fechaFinal}">Mostrar Fecha Final</td>
+                                    <td th:text="${oferta.idProducto.nombre}">Mostrar Producto</td>
+                                    <td th:text="${oferta.precioOferta}">Mostrar Precio Oferta</td>
+                                    <td th:text="${oferta.idProducto.tipoProd.descripcion}">Mostrar Tipo Producto</td>
+                                    <td th:text="${oferta.idProducto.catProd.descripcion}">Mostrar Categoria Producto</td>
+                                    <td th:text="${oferta.detalle}">Mostrar Detalle</td>
+                                    <td><a th:href="@{/editaroferta/} + ${oferta.idOferta}"/>[[#{accion.editar}]]</td>
+                                    <td><a th:href="@{/eliminaroferta/} + ${oferta.idOferta}"/>[[#{accion.eliminar}]]</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div th:if="${oferta == null or oferta.empty}">
+                        [[#{oferta.lista-vacia}]]
+                    </div>
+                    <div class="button">
+                        <a th:href="@{/agregaroferta}">[[#{oferta.crear}]]</a>
+                    </div>
+                    <div class="button2">
+                        <a th:href="@{/dash}">[[#{accion.regresar}]]</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="./js/main.js"></script>  
+    </body>
+</html>

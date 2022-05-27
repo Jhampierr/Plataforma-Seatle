@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xlmns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Plantilla</title>
+        <tag th:fragment="head">
+            <meta charset="UTF-8"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            <!--=============== FAVICON ===============-->
+            <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico" />
+
+            <!-- BoxIcons CDN Link -->
+            <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+            <!-- Mis Stilos -->
+            <link rel="stylesheet" href="/css/main.css">
+        </tag>
+    </head>
+    <body>
+            <!--=========================== INICIA SIDEBAR ===========================-->
+            <header th:fragment="header">
+                <div class="sidebar">
+                    <div class="logo-details">
+                        <i class='bx bxs-rocket'></i>
+                        <span class="logo-name" th:text="Seatle">Titulo</span>
+                    </div>
+                    <ul class="nav-links">
+                        <li>
+                            <a href="/dash">
+                                <i class='bx bx-grid-alt' ></i>
+                                <span class="links-name">Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/pedido}">
+                                <i class='bx bx-book-alt' ></i>
+                                <span class="links-name">Lista de Pedidos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/reserva}">
+                                <i class='bx bx-time' ></i>
+                                <span class="links-name">Lista de Reserva</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/oferta}">
+                                <i class='bx bx-heart' ></i>
+                                <span class="links-name">Lista de Ofertas</span>
+
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/producto}">
+                                <i class='bx bx-box' ></i>
+                                <span class="links-name">Lista de Productos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/empleado}">
+                                <i class='bx bx-user' ></i>
+                                <span class="links-name">Lista de Empleados</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/tipoProducto}">
+                                <i class='bx bx-list-ul' ></i>
+                                <span class="links-name">Lista de Tipo Productos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/catProducto}">
+                                <i class='bx bx-list-ul' ></i>
+                                <span class="links-name">Lista de Categoria Productos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/tipoEmpleado}">
+                                <i class='bx bx-list-ul' ></i>
+                                <span class="links-name">Lista de Tipo Empleados</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/cliente}">
+                                <i class='bx bxs-user' ></i>
+                                <span class="links-name">Lista de Clientes</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/web}">
+                                <i class='bx bxs-user' ></i>
+                                <span class="links-name">Web Cliente</span>
+                            </a>
+                        </li>
+                        <li>
+                            <form method="POST" th:action="@{/logout}" th:href="@{/}">
+                                <a onclick="this.parentNode.submit();" id='logout'> 
+                                    <i class='bx bx-log-out-circle' ></i>
+                                    <span class="links-name">Logout</span>
+                                </a>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <!--=========================== FIN SIDEBAR ===========================-->
+            
+            <!--=========================== INICIA HOME - NAV ===========================-->
+            
+            <nav th:fragment="nav">
+                <div class="sidebar-button" id='btn'>
+                    <i class='bx bx-menu'></i>
+                    <span class="dashboard">Dashboard</span>
+                </div>
+                <div class="profile-details">
+                    <div class="admin-box">
+                        <b>User: </b> <span sec:authentication="name">Usuario que hizo login</span>
+                        <img src="../img/profile-img.jpg" alt="Admin Img">
+                        <span sec:authentication="principal.authorities">Roles</span>
+                    </div>
+                </div>
+            </nav>
+            <!--=========================== FIN HOME - NAV ===========================-->
+            
+        
+        <script src="./js/main.js"></script>
+    </body>
+</html>

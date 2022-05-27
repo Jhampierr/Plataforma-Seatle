@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+            <title>A" Mar y Tierra</title>
+            <tag th:replace="layout/plantillaCli :: head"></tag>
+    </head>
+
+    <body class="home">
+	<header th:replace="layout/plantillaCli :: header"></header>
+
+	<!-- Header -->
+	<header id="head">
+		<div class="container">
+			<div class="row">
+				<h1 class="lead">A" MAR Y TIERRA</h1>
+				<p class="lead">RESTAURANTE</p>
+			</div>
+		</div>
+	</header>
+	<!-- /Header -->
+
+	<!-- Intro -->
+	<div class="container text-center">
+		<br> <br>
+		<h2 class="thin">¡Bienvenido!</h2>
+		<p class="text-muted">
+			Estimado amigo(a), reciba nuestra mas calida
+                        Bienvenida A Mar y Tierra Restaurante junto a mi equipo
+		</p>
+	</div>
+	<!-- /Intro-->
+		
+	<!-- Highlights - jumbotron -->
+	<div class="jumbotron top-space">
+		<div class="container">
+			
+			<h3 class="text-center thin">Nuestras Ofertas</h3>
+			
+			<div class="row">
+				<div class="col-md-3 col-sm-6 highlight">
+					<div class="h-caption">
+                                            <h4><img src="/images/choritosalachalaca.jpg" alt="" class="img-thumbnail" width="300" >Choritos a la chalaca</h4></div>
+					<div class="h-body text-center">
+						<p>Elaborado con choros cocidos, cebolla y tomate picados, granos de maíz hervido, culantro y jugo de limón.</p>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 highlight">
+					<div class="h-caption">
+                                            <h4><img src="/images/mazamorramorada.jpg" alt="" class="img-thumbnail pull-left" width="300" >Mazamorra morada</h4></div>
+					<div class="h-body text-center">
+						<p>Es un postre típico de la gastronomía peruana elaborado a base de maíz morado concentrado con fécula.</p>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 highlight">
+					<div class="h-caption">
+                                            <h4><img src="/images/lomosaltado.jpg" alt="" class="img-thumbnail pull-left" width="300" >Lomo Saltado </h4></div>
+					<div class="h-body text-center">
+						<p>Consistente en carne de res, arroz cocido y papas fritas.</p>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 highlight">
+					<div class="h-caption">
+                                            <h4><img src="/images/piscosour.jpg" alt="" class="img-thumbnail pull-left" width="300" >Pisco Sour</h4></div>
+					<div class="h-body text-center">
+						<p>El pisco sour es un cóctel preparado con pisco y zumo de limón.</p>
+					</div>
+				</div>
+			</div> <!-- /row  -->
+		
+		</div>
+	</div>
+	<!-- /Highlights -->
+
+	<!-- container -->
+	<div class="container">
+
+		<div class="jumbotron top-space">
+			<h3>No te pierdas la oportunidad de conocer A" Mar y Tierra Restaurante</h3>
+                        <p class="text-right"><a class="btn btn-primary btn-large" th:href="@{/menureservaC}">Reserva aquí »</a></p>
+  		</div>
+
+        </div>	<!-- /container -->
+	
+	<footer th:replace="layout/plantillaCli :: footer"></footer>
+		
+
+
+
+
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="/js/headroom.min.js"></script>
+	<script src="/js/jQuery.headroom.min.js"></script>
+	<script src="/js/template.js"></script>
+        
+        <script src="./js/main.js"></script>
+    </body>
+</html>

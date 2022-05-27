@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Empleado</title>
+        <tag th:replace="layout/plantilla :: head"></tag>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+
+        <section class="home-section">
+            <nav th:replace="layout/plantilla :: nav"></nav>
+            <div class="sales-boxes">
+                <div class="recent-sales box">
+                    <div class="title">[[#{empleado.formulario}]]</div>
+
+                    <div th:if="${empleado != null and !empleado.empty}">
+                        <div class="sales-details">
+                            <table border="1">
+                                <tr>
+                                    <th>[[#{empleado.dni}]]</th>
+                                    <th>[[#{empleado.nombre}]]</th>
+                                    <th>[[#{empleado.apellido}]]</th>
+                                    <th>[[#{empleado.telefono}]]</th>
+                                    <th>[[#{empleado.correo}]]</th>
+                                    <th>[[#{empleado.direccion}]]</th>
+                                    <th>[[#{empleado.fechaIngreso}]]</th>
+                                    <th>[[#{empleado.tipoEmp}]]</th>
+                                    <th sec:authorize="hasRole ('ROLE_ADMIN')">[[#{accion.editar}]]</th>
+                                    <th sec:authorize="hasRole ('ROLE_ADMIN')">[[#{accion.eliminar}]]</th>
+                                </tr>
+
+                                <tr th:each="empleado : ${empleado}">
+                                    <td th:text="${empleado.dni}">Mostrar Dni</td>
+                                    <td th:text="${empleado.nombre}">Mostrar Nombre</td>
+                                    <td th:text="${empleado.apellido}">Mostrar Apellido</td>
+                                    <td th:text="${empleado.telefono}">Mostrar Telefono</td>
+                                    <td th:text="${empleado.correo}">Mostrar Correo</td>
+                                    <td th:text="${empleado.direccion}">Mostrar Direccion</td>
+                                    <td th:text="${empleado.fechaIngreso}">Mostrar Fecha Ingreso</td>
+                                    <td th:text="${empleado.tipoEmp.descripcion}">Mostrar Tipo de Empleado</td>
+                                    <td sec:authorize="hasRole ('ROLE_ADMIN')"><a th:href="@{/editarempleado/} + ${empleado.idEmpleado}"/>[[#{accion.editar}]]</td>
+                                    <td sec:authorize="hasRole ('ROLE_ADMIN')"><a th:href="@{/eliminarempleado/} + ${empleado.idEmpleado}"/>[[#{accion.eliminar}]]</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div th:if="${empleado == null or empleado.empty}">
+                        [[#{empleado.lista-vacia}]]
+                    </div>
+                    <div class="button">
+                        <a sec:authorize="hasRole ('ROLE_ADMIN')" th:href="@{/agregarempleado}">[[#{empleado.crear}]]</a>
+                    </div>
+                    <div class="button2">
+                        <a th:href="@{/dash}">[[#{accion.regresar}]]</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <script src="./js/main.js"></script>        
+    </body>
+</html>

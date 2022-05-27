@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Reserva</title>
+        <tag th:replace="layout/plantilla :: head"></tag>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+
+        <section class="home-section">
+            <nav th:replace="layout/plantilla :: nav"></nav>
+            <div class="sales-boxes">
+                <div class="recent-sales box">
+                    <div class="title">[[#{reserva.formulario}]]</div>
+
+                    <div th:if="${reserva != null and !reserva.empty}">
+                        <div class="sales-details">
+                            <table border="1">
+                                <tr>
+                                    <th>[[#{reserva.fecha}]]</th>
+                                    <th>[[#{reserva.hora}]]</th>
+                                    <th>Cliente</th>
+                                    <th>[[#{cliente.telefono}]]</th>
+                                    <th>[[#{reserva.mesa}]]</th>
+                                    <th>[[#{reserva.cantidad}]]</th>
+                                    <th>[[#{accion.editar}]]</th>
+                                    <th>[[#{accion.eliminar}]]</th>
+                                </tr>
+
+                                <tr th:each="reserva : ${reserva}">
+                                    <td th:text="${reserva.fecha}">Mostrar Fecha</td>
+                                    <td th:text="${reserva.hora}">Mostrar Hora</td>
+                                    <td th:text="${reserva.cliente.nombre} + ' ' +${reserva.cliente.apellido}">Mostrar cliente</td>
+                                    <td th:text="${reserva.cliente.telefono}">Mostrar Telefono</td>
+                                    <td th:text="${reserva.mesa}">Mostrar mesa</td>
+                                    <td th:text="${reserva.cantidad}">Mostrar Cantidad</td>
+                                    
+                                    <td><a th:href="@{/editarreserva/} + ${reserva.idReserva}"/>[[#{accion.editar}]]</td>
+                                    <td><a th:href="@{/eliminarreserva/} + ${reserva.idReserva}"/>[[#{accion.eliminar}]]</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div th:if="${reserva == null or reserva.empty}">
+                        [[#{reserva.lista-vacia}]]
+                    </div>
+                    <div class="button">
+                        <a th:href="@{/agregarreserva}">[[#{reserva.crear}]]</a>
+                    </div>
+                    <div class="button2">
+                        <a th:href="@{/dash}">[[#{accion.regresar}]]</a>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        <script src="./js/main.js"></script> 
+    </body>
+</html>

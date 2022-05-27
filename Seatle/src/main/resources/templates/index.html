@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Inicio</title>
+        <tag th:replace="layout/plantilla :: head"></tag>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <section class="home-section">
+            <!--=========================== INICIA HOME - CONTENT ===========================-->
+            <nav th:replace="layout/plantilla :: nav"></nav>
+            <div class="home-content">
+                <div class="overview-boxes" >
+
+                    <!-- Init Box Item -->
+                    <div class="box">
+                        <div class="left-side">
+                            <div class="box-topic" >
+                                Nuevos Pedidos
+                            </div>
+                            <div class="number">
+                                 [[${nuevo}]]
+                            </div>
+                            <div class="indicator">
+                                <i class='bx bx-up-arrow-alt' ></i>
+                                <div class="text">Up from yesterday</div>
+                            </div>
+                        </div>
+                        <i class='bx bxs-cart-alt cart' ></i>
+                    </div>
+                    <!-- End Box Item -->
+                    <!-- Init Box Item -->
+                    <div class="box">
+                        <div class="left-side">
+                            <div class="box-topic">
+                                Pedidos Pendientes
+                            </div>
+                            <div class="number">
+                                [[${pendiente}]]
+                            </div>
+                            <div class="indicator">
+                                <i class='bx bx-up-arrow-alt cartplus' ></i>
+                                <div class="text">Up from yesterday</div>
+                            </div>
+                        </div>
+                        <i class='bx bxs-cart-add cart two' ></i>
+                    </div>
+                    <!-- End Box Item -->
+                    <!-- Init Box Item -->
+                    <div class="box">
+                        <div class="left-side">
+                            <div class="box-topic">
+                                Pedidos Finalizados
+                            </div>
+                            <div class="number">
+                                 [[${finalizado}]]
+                            </div>
+                            <div class="indicator">
+                                <i class='bx bx-up-arrow-alt cartup' ></i>
+                                <div class="text">Up from yesterday</div>
+                            </div>
+                        </div>
+                        <i class='bx bxs-cart cart three'></i>
+                    </div>
+                    <!-- End Box Item -->
+                    <!-- Init Box Item -->
+                    <div class="box">
+                        <div class="left-side">
+                            <div class="box-topic">
+                                Ingreso del día
+                            </div>
+                            <div class="number">
+                                    [[${ingresoDia}]]
+                            </div>
+                            <div class="indicator">
+                                <i class='bx bx-up-arrow-alt cartplus' ></i>
+                                <div class="text">Up from yesterday</div>
+                            </div>
+                        </div>
+                        <i class='bx bxs-cart-download cart four'></i>
+                    </div>
+                    <!-- End Box Item -->
+                </div>
+            </div>
+            <!--=========================== FIN HOME - CONTENT ===========================-->
+                    <!--=========================== INICIO SALE - CONTENT ===========================-->
+            <div class="sales-boxes">
+                <!-- Init Box Item Left side -->
+                <div class=" box">
+                    <div class="title">Lista de Pedidos</div>
+                    <div class="sales-details">
+                        <table>
+                            <tr>
+                                <th>[[#{pedido.numero}]]</th>
+                                <th>[[#{pedido.hora}]]</th>
+                                <th>[[#{pedido.estado}]]</th>
+                                <th>[[#{pedido.cliente}]]</th>
+
+                                <th>[[#{pedido.total}]]</th>
+                            </tr>
+
+                            <tr th:each="pedido : ${pedido}" th:if="${pedido.getFecha().equals(fechaString)}">
+                                <div th:if="${pedido.getEstado().equals('Nuevo') || pedido.getEstado().equals('Pendiente')}">
+                                <td th:text="${pedido.numero}">Mostrar Numero</td>
+                                <td th:text="${pedido.hora}">Mostrar Hora</td>
+                                <td th:text="${pedido.estado}">Mostrar Estado</td>
+                                <td th:text="${pedido.cliente.nombre} + ' ' +${pedido.cliente.apellido}">Mostrar nombre de Cliente</td>
+
+                                <td th:text="${pedido.total}">Mostrar Total</td>
+                                </div>
+                            </tr>
+                        </table>
+
+                    </div>
+                    <div class="button">
+                        <a th:href="@{/pedido}">Ver detalles</a>
+                    </div>
+                </div>
+                
+                <div class=" box">
+                    <div class="title">Lista de Reservas</div>
+                    <div class="sales-details">
+                        <table>
+                                <tr>
+                                    <th>[[#{reserva.fecha}]]</th>
+                                    <th>[[#{reserva.hora}]]</th>
+                                    <th>Cliente</th>
+                                    <th>[[#{cliente.telefono}]]</th>
+                                    <th>[[#{reserva.cantidad}]]</th>
+                                </tr>
+
+                                <tr th:each="reserva : ${reserva}" th:if="${reserva.getFecha().equals(fechaString)}">
+                                    <td th:text="${reserva.fecha}">Mostrar Fecha</td>
+                                    <td th:text="${reserva.hora}">Mostrar Hora</td>
+                                    <td th:text="${reserva.cliente.nombre} + ' ' +${reserva.cliente.apellido}">Mostrar Numero</td>
+                                    <td th:text="${reserva.cliente.telefono}">Mostrar Telefono</td>
+                                    <td th:text="${reserva.cantidad}">Mostrar Cantidad</td>
+                                    
+                                </tr>
+                            </table>
+
+                    </div>
+                    <div class="button">
+                        <a th:href="@{/reserva}">Ver detalles</a>
+                    </div>
+                </div>
+                <!-- End Box Item -->
+            
+                
+                
+            </div>
+            <!--=========================== FIN SALE - CONTENT ===========================-->
+            
+        </section>
+
+
+        <script src="./js/main.js"></script>
+    </body>
+</html>

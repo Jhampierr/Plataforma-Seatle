@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Datos del Empleado</title>
+        <tag th:replace="layout/plantilla :: head"></tag>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+
+        <section class="home-section">
+            <nav th:replace="layout/plantilla :: nav"></nav>
+            <div class="sales-boxes">
+                <div class="recent-sales box">
+                    <div class="title">[[#{empleado.formulario}]]</div>
+
+                    <br/>
+                    <form th:action="@{/guardarempleado}" method="post" th:object="${empleado}">
+                        <input type="hidden" name="idEmpleado" th:field="*{idEmpleado}"/>
+                        <br/>
+                        <label for="dni">[[#{empleado.dni}]]: </label>
+                        <input type="text"  pattern="[0-9]{8}" minlength="8" maxlength="8" name="dni" th:field="*{dni}"/>
+                        <span th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}">Error DNI</span> 
+                        <br/>
+                        <label for="nombre">[[#{empleado.nombre}]]: </label>
+                        <input type="text" pattern="[a-z,A-Z]{3,15}" name="nombre" th:field="*{nombre}"/>
+                        <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error Nombre</span>   
+                        <br/>
+                        <label for="apellido">[[#{empleado.apellido}]]: </label>
+                        <input type="text" pattern="[a-z,A-Z]{3,15}" name="apellido" th:field="*{apellido}"/>
+                        <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">Error Apellido</span>
+                        <br/>
+                        <label for="telefono">[[#{empleado.telefono}]]: </label>
+                        <input type="tel" minlength="9" maxlength="13" name="telefono" th:field="*{telefono}"/>
+                        <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}">Error Telefono</span>
+                        <br/>
+                        <label for="correo">[[#{empleado.correo}]]: </label>
+                        <input type="email" name="correo" th:field="*{correo}"/>
+                        <span th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}">Error Correo</span>
+                        <br/>
+                        <label for="direccion">[[#{empleado.direccion}]]: </label>
+                        <input type="text" name="direccion" th:field="*{direccion}"/>
+                        <span th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}">Error Direccion</span>
+                        <br/>
+                        <label for="fechaIngreso">[[#{empleado.fechaIngreso}]]: </label>
+                        <input type="date" name="fechaIngreso" th:field="*{fechaIngreso}"/>
+                        <span th:if="${#fields.hasErrors('fechaIngreso')}" th:errors="*{fechaIngreso}">Error fecha de ingreso</span>
+                        <br/>
+                        <label for="tipoEmp">[[#{empleado.tipoEmp}]]: </label>
+                        <select name="tipoEmp" th:field="*{tipoEmp}">
+                            <option th:each="tipoEmp:${tipoEmp}"
+                                    th:value="${tipoEmp.idTipoEmpleado}"
+                                    th:text="${tipoEmp.descripcion}"		
+                                    />
+                        </select>
+                        <span th:if="${#fields.hasErrors('tipoEmp')}" th:errors="*{tipoEmp}">Error Tipo de Empleado</span>
+
+                        <br/>
+                        <div class="button">
+                            <input type="submit" name="guardarempleado" th:value="#{accion.guardar}"/>
+                        </div>
+                    </form>
+                    <div class="button2">
+                        <a th:href="@{/empleado}">[[#{accion.regresar}]]</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="./js/main.js"></script>  
+    </body>
+</html>

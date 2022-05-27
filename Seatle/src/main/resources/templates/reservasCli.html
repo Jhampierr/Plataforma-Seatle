@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Reservas</title>
+        <tag th:replace="layout/plantillaCli :: head"></tag>
+    </head>
+
+    <body>
+        <header th:replace="layout/plantillaCli :: header"></header>
+        <header id="head" class="secondary"></header>
+
+        <!-- container -->
+        <div class="container">
+
+            <ol class="breadcrumb">
+                <li><a th:href="@{/web}">Inicio</a></li>
+                <li class="active">Reservas</li>
+            </ol>
+
+            <div class="row">
+
+                <!-- Article main content -->
+                <article class="col-sm-9 maincontent">
+                    <header class="page-header">
+                        <h1 class="page-title">Haz tu reserva en A" Mar y Tierra Restaurante</h1>
+                    </header>
+
+                    <p>
+                        Haz tu reserva y nosotros nos encargamos del resto
+                    </p>
+                    <br>
+                        <form th:action="@{/nuevoreservaC}" method="post" th:object="${reserva}">
+                            <input type="hidden" name="idReserva" th:field="*{idReserva}"/>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label for="fecha">[[#{reserva.fecha}]]: </label>
+                                    <input class="form-control" type="date" name="fecha" th:field="*{fecha}">
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for="hora">[[#{reserva.hora}]]: </label>
+                                    <input class="form-control" type="time" name="hora" th:field="*{hora}">
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for="cantidad">Cantidad de personas: </label>
+                                    <input class="form-control" type="number" name="cantidad" th:field="*{cantidad}" 
+                                           placeholder="Ingrese la cantidad de personas">
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label for="hora">Nombres: </label>
+                                    <select class="form-control" name="cliente" th:field="*{cliente}">
+                                        <option th:each="cliente:${cliente2}"
+                                                th:value="${cliente.idCliente}"
+                                                th:text="${cliente.nombre} +' ' +${cliente.apellido}"		
+                                                />
+                                    </select>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-sm-6 text-left">
+                                    <input class="btn btn-action" type="submit" name="nuevoreservaC" 
+                                           onclick="alert('Se registro la reserva correctamente')" value="Confirmar reserva">
+                                </div>
+                            </div>
+                        </form>
+                </article>
+                <!-- /Article -->
+
+                <!-- Sidebar -->
+                <aside class="col-sm-3 sidebar sidebar-right">
+
+                    <div class="widget">
+                        <h4>Registrar nuevo cliente</h4>
+
+                        <br/>
+                        <form th:action="@{/nuevoclienteC}" method="post" th:object="${cliente}">
+                            <input type="hidden" name="idCliente" th:field="*{idCliente}"/>
+
+                            <div class="row">
+                                <label for="dni">[[#{cliente.dni}]]: </label>
+                                <input type="text"  pattern="[0-9]{8}" minlength="8" maxlength="8" name="dni" th:field="*{dni}"/>
+                                <span th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}">Error DNI</span> 
+                                <br/>
+                                <br/>
+                                <label for="nombre">[[#{cliente.nombre}]]: </label>
+                                <input type="text" pattern="[a-z,A-Z]{3,15}" name="nombre" th:field="*{nombre}"/>
+                                <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error Nombre</span>   
+                                <br/>
+                                <br/>
+                                <label for="apellido">[[#{cliente.apellido}]]: </label>
+                                <input type="text" pattern="[a-z,A-Z]{3,15}" name="apellido" th:field="*{apellido}"/>
+                                <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">Error Apellido</span>
+                                <br/>
+                                <br/>
+                                <label for="telefono">[[#{cliente.telefono}]]: </label>
+                                <input type="tel" minlength="9" maxlength="13" name="telefono" th:field="*{telefono}"/>
+                                <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}">Error Telefono</span>
+                                <br/>
+                                <br/>
+                                <label for="correo">[[#{cliente.correo}]]: </label>
+                                <input type="email" name="correo" th:field="*{correo}"/>
+                                <span th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}">Error Correo</span>
+                                <br/>
+                                <br/>
+                                <label for="direccion">[[#{cliente.direccion}]]: </label>
+                                <input type="text" name="direccion" th:field="*{direccion}"/>
+                                <span th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}">Error Direccion</span>
+
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-sm-6 text-left">
+                                    <input class="btn btn-action" type="submit" name="nuevoclienteC"
+                                           onclick="alert('Se registro el nuevo cliente correctamente')" th:value="#{accion.guardar}"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </aside>
+                <!-- /Sidebar -->
+            </div>
+        </div>	<!-- /container -->
+
+
+        <div class="container">
+            <div class="row">
+                <h1 class="page-title">Nos encontramos aquí:</h1>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d485.3369522705767!2d-72.11568333905363!3d-13.30694453970414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x916ddde48abfd12d%3A0x2115afe1a34b52e7!2sA%22%20MAR%20%26%20TIERRA%20-%20RESTAURANTE!5e0!3m2!1ses-419!2spe!4v1639201926877!5m2!1ses-419!2spe" 
+                        width="100%" height="400" style="border:0;" allowfullscreen="" ></iframe>
+            </div>
+        </div>
+
+
+        <footer th:replace="layout/plantillaCli :: footer"></footer>	
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <script src="/js/headroom.min.js"></script>
+        <script src="/js/jQuery.headroom.min.js"></script>
+        <script src="/js/template.js"></script>
+
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="/js/main.js"></script>
+
+
+    </body>
+</html>

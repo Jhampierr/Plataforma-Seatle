@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Pedido</title>
+        <tag th:replace="layout/plantilla :: head"></tag>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+
+        <section class="home-section">
+            <nav th:replace="layout/plantilla :: nav"></nav>
+            <div class="sales-boxes">
+                <div class="recent-sales box">
+                    <div class="title">[[#{pedido.formulario}]]</div>
+
+                    <div th:if="${pedido != null and !pedido.empty}">
+                        <div class="sales-details">
+                            <table border="1">
+                                <tr>
+                                    <th>[[#{pedido.numero}]]</th>
+                                    <th>[[#{pedido.fecha}]]</th>
+                                    <th>[[#{pedido.hora}]]</th>
+                                    <th>[[#{pedido.estado}]]</th>
+                                    <th>[[#{pedido.direccionPedido}]]</th>
+                                    <th>[[#{pedido.empleado}]]</th>
+                                    <th>[[#{pedido.cliente}]]</th>
+                                    
+                                    <th>[[#{pedido.cantidadProducto}]]</th>
+                                    <th>[[#{pedido.producto}]]</th>
+                                    
+                                    <th>[[#{pedido.cantidadOferta}]]</th>
+                                    <th>[[#{pedido.oferta}]]</th>
+                                    
+                                    <th>[[#{pedido.total}]]</th>
+                                    <th>[[#{pedido.detalle}]]</th>
+                                    <th>[[#{accion.editar}]]</th>
+                                    <th>[[#{accion.eliminar}]]</th>
+                                </tr>
+
+                                <tr th:each="pedido : ${pedido}">
+                                    <td th:text="${pedido.numero}">Mostrar Numero</td>
+                                    <td th:text="${pedido.fecha}">Mostrar Fecha</td>
+                                    <td th:text="${pedido.hora}">Mostrar Hora</td>
+                                    <td th:text="${pedido.estado}">Mostrar Estado</td>
+                                    <td th:text="${pedido.direccionPedido}">Mostrar Direccion de pedido</td>
+                                    <td th:text="${pedido.empleado.nombre}">Mostrar nombre de Empleado</td>
+                                    <td th:text="${pedido.cliente.nombre} + ' ' +${pedido.cliente.apellido}">Mostrar nombre de Cliente</td>
+                                    
+                                    <td th:text="${pedido.cantidadProducto}">Mostrar Cantidad de producto</td>
+                                    <td th:text="${pedido.producto.nombre}">Mostrar nombre de Producto</td>
+                                    
+                                    <td th:text="${pedido.cantidadOferta}">Mostrar Cantidad de oferta</td>
+                                    <td th:text="${pedido.oferta.idProducto.nombre}">Mostrar nombre de Oferta</td>
+                                    
+                                    <td th:text="${pedido.total}">Mostrar Total</td>
+                                    <td th:text="${pedido.detalle}">Mostrar Detalle</td>
+                                    <td><a th:href="@{/editarpedido/} + ${pedido.idPedido}"/>[[#{accion.editar}]]</td>
+                                    <td><a th:href="@{/eliminarpedido/} + ${pedido.idPedido}"/>[[#{accion.eliminar}]]</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div th:if="${pedido == null or pedido.empty}">
+                        [[#{pedido.lista-vacia}]]
+                    </div>
+                    <div class="button">
+                        <a th:href="@{/agregarpedido}">[[#{pedido.crear}]]</a>
+                    </div>
+                    <div class="button2">
+                        <a th:href="@{/dash}">[[#{accion.regresar}]]</a>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        <script src="./js/main.js"></script> 
+    </body>
+</html>
