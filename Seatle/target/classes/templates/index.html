@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Inicio</title>
+        <tag th:replace="layout/plantilla :: head"></tag>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <section class="home-section">
+            <!--=========================== INICIA HOME - CONTENT ===========================-->
+            <nav th:replace="layout/plantilla :: nav"></nav>
+            <div class="home-content">
+                <div class="overview-boxes" >
+
+                    <!-- Init Box Item -->
+                    <div class="box">
+                        <div class="left-side">
+                            <div class="box-topic">
+                                5to Matematica
+                            </div>
+                            
+                        </div>
+                        <i class='bx bx-shape-square'></i>
+                    </div>
+                    <!-- End Box Item -->
+                    <!-- Init Box Item -->
+                    <div class="box">
+                        <div class="left-side">
+                            <div class="box-topic">
+                                5to Comunicación
+                            </div>
+                            
+                        </div>
+                        <i class='bx bx-book'></i>
+                    </div>
+                    <!-- End Box Item -->
+                    <!-- Init Box Item -->
+                    <div class="box">
+                        <div class="left-side">
+                            <div class="box-topic">
+                                5to Ciencia y Tecnología
+                            </div>
+                            
+                        </div>
+                        <i class='bx bx-atom'></i>
+                    </div>
+                    <!-- End Box Item -->
+                </div>
+            </div>
+            <!--=========================== FIN HOME - CONTENT ===========================-->
+                    <!--=========================== INICIO SALE - CONTENT ===========================-->
+            <div class="sales-boxes">
+                <!-- Init Box Item Left side -->
+                <div class="recent-sales box">
+                    <div class="title">Ultimas notas de Matematica</div>
+                    <div class="sales-details">
+                        <table>
+                            <tr>
+                                <th>#</th>
+                                <th>Apellido</th>
+                                <th>Nombre</th>
+                                <th>Nota</th>
+                                <th>Estado</th>
+
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Gonzales</td>
+                                <td>Juan</td>
+                                <td>17</td>
+                                <td><i class='bx bx-trending-up'></i></td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Perez</td>
+                                <td>Alonso</td>
+                                <td>13</td>
+                                <td><i class='bx bx-trending-down'></i></td>
+                            </tr>
+                        </table>
+
+                    </div>
+                    <div class="button">
+                        <a th:href="@{/pedido}">Ver detalles</a>
+                    </div>
+                </div>
+                
+                <!-- End Box Item -->
+            
+                
+                
+            </div>
+            <!--=========================== FIN SALE - CONTENT ===========================-->
+            
+        </section>
+
+
+        <script src="./js/main.js"></script>
+    </body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xlmns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Plantilla</title>
+        <tag th:fragment="head">
+            <link rel="shortcut icon" href="/images/gt_favicon.png">
+
+            <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+            <link rel="stylesheet" href="/css/bootstrap.min.css">
+            <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+            <link rel="stylesheet" href="/css/bootstrap-theme.css" media="screen" >
+            <link rel="stylesheet" href="/css/main2.css">
+            
+        </tag>
+    </head>
+    <body>
+            <header th:fragment="header">
+                <!-- Fixed navbar -->
+                <div class="navbar navbar-inverse navbar-fixed-top headroom" >
+                    
+                        <div class="container">
+                                <div class="navbar-header">
+                                        <!-- Button for smallest screens -->
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                                        <a class="navbar-brand" th:href="@{/web}"><img src="/images/logo2.png" alt="Progressus HTML5 template"></a>
+                                </div>
+                            
+                                <div class="navbar-collapse collapse">
+                                        <ul class="nav navbar-nav pull-right">
+                                                <li class="active"><a th:href="@{/web}">Inicio</a></li>
+                                                <li><a th:href="@{/acerca}">Acerca de nosotros</a></li>
+                                                
+                                                <li><a th:href="@{/contacto}">Contacto</a></li>
+                                                <li class="active"><a th:href="@{/menureservaC}">Reservas</a></li>
+                                                <li><a class="btn" th:href="@{/login}">Iniciar Sesión</a></li>
+                                                <li class="active"><a th:href="@{/dash}">Dashboard</a></li>     
+                                        </ul>
+                                    
+                                </div><!--/.nav-collapse -->
+                                
+                        </div>
+                    
+                </div>
+                <b>User: </b> <span sec:authentication="name">Usuario que hizo login</span>
+                <!-- /.navbar -->
+            </header>
+        
+            <footer id="footer" class="top-space" th:fragment="footer">
+                    <div class="footer1" >
+                            <div class="container">
+                                    <div class="row">
+
+                                            <div class="col-md-3 widget">
+                                                    <h3 class="widget-title">Contacto</h3>
+                                                    <div class="widget-body">
+                                                        <a class="widget-title">Seatle</a> <br>
+                                                        <a href="callto:+51925213857">+51 925213857</a><br>
+                                                                    <a href="mailto:proyectseatle@seatle.com">proyectseatle@seatle.com</a><br>
+                                                                    <br>
+                                                                    Av. El Sol 272, SJL-Lima
+                                                            </p>	
+                                                    </div>
+                                            </div>
+
+                                            <div class="col-md-3 widget">
+                                                    <h3 class="widget-title">Siguenos en:</h3>
+                                                    <div class="widget-body">
+                                                            <p class="follow-me-icons">
+                                                                    <a href="https://github.com/Jhampierr/Plataforma-Seatle"><i class="fa fa-github fa-2"></i></a>
+                                                                    <a href="https://www.facebook.com/SeatleEdu"><i class="fa fa-facebook fa-2"></i></a>
+                                                            </p>	
+                                                    </div>
+                                            </div>
+
+                                    </div> <!-- /row of widgets -->
+                            </div>
+                    </div>
+            </footer>
+            
+    </body>
+</html>
