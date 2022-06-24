@@ -30,11 +30,11 @@ public class Alumno implements Serializable{
     private String correo;
     
     @ManyToOne
-    @JoinColumn(name="grado_id_grado")
+    @JoinColumn(name="id_grado")
     private Grado grado;
     
     @ManyToOne
-    @JoinColumn(name="seccion_id_seccion")
+    @JoinColumn(name="id_seccion")
     private Seccion seccion;
     
     private String fechaUpdate;

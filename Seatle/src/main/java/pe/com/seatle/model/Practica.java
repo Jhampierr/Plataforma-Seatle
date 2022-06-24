@@ -18,7 +18,7 @@ public class Practica implements Serializable{
     private Long idPractica;
             
     @ManyToOne
-    @JoinColumn(name="tema_id_tema")
+    @JoinColumn(name="id_tema")
     private Tema tema;
     
     @NotEmpty
@@ -45,11 +45,7 @@ public class Practica implements Serializable{
     private String pregunta;
     private String respuesta;
     private String puntos;
-    
-    @ManyToOne
-    @JoinColumn(name="alumno_id_alumno")
-    private Alumno alumno;
-        
+            
     private String fechaUpdate;
     private String hostName;
     private String ip;

@@ -21,23 +21,23 @@ public class Curso implements Serializable{
     private String nombre;
     
     @ManyToOne
-    @JoinColumn(name="grado_id_grado")
+    @JoinColumn(name="id_grado")
     private Grado grado;
     
     @ManyToOne
-    @JoinColumn(name="tema_id_tema")
+    @JoinColumn(name="id_tema")
     private Tema tema;
     
     @ManyToOne
-    @JoinColumn(name="material_id_material")
+    @JoinColumn(name="id_material")
     private Material material;
     
     @ManyToOne
-    @JoinColumn(name="tarea_id_tarea")
+    @JoinColumn(name="id_tarea")
     private Tarea tarea;
     
     @ManyToOne
-    @JoinColumn(name="practica_id_practica")
+    @JoinColumn(name="id_practica")
     private Practica practica;
     
     private String descripcion;

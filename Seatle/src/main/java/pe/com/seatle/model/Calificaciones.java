@@ -18,15 +18,15 @@ public class Calificaciones implements Serializable{
     private Long idCalificaciones;
     
     @ManyToOne
-    @JoinColumn(name="alumno_id_alumno")
+    @JoinColumn(name="id_alumno")
     private Alumno alumno;
         
     @ManyToOne
-    @JoinColumn(name="tarea_id_tarea")
+    @JoinColumn(name="id_tarea")
     private Tarea tarea;
     
     @ManyToOne
-    @JoinColumn(name="practica_id_practica")
+    @JoinColumn(name="id_practica")
     private Practica practica;
     
     private String descripcion;

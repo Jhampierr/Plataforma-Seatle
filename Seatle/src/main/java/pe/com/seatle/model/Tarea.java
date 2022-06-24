@@ -18,7 +18,7 @@ public class Tarea implements Serializable{
     private Long idTarea;
             
     @ManyToOne
-    @JoinColumn(name="tema_id_tema")
+    @JoinColumn(name="id_tema")
     private Tema tema;
     
     @NotEmpty
@@ -40,11 +40,7 @@ public class Tarea implements Serializable{
     private String fechaDeEntrega;
     private String entrega;
     private String puntos;
-    
-    @ManyToOne
-    @JoinColumn(name="alumno_id_alumno")
-    private Alumno alumno;
-    
+        
     private String fechaUpdate;
     private String hostName;
     private String ip;

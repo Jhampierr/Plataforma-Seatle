@@ -22,7 +22,7 @@
     <body>
             <!--=========================== INICIA SIDEBAR ===========================-->
             <header th:fragment="header">
-                <div class="sidebar">
+                <aside class="sidebar">
                     <div class="logo-details">
                         <i class='bx bxs-rocket'></i>
                         <span class="logo-name" >Seatle</span>
@@ -35,9 +35,10 @@
                             </a>
                         </li>
                         <li>
-                            <a th:href="@{/}">
+                            <a th:href="@{/miscursos}">
                                 <i class='bx bx-book-alt' ></i>
-                                <span class="links-name">5to A</span>
+                                <span class="links-name">Mis cursos</span>
+                                
                             </a>
                         </li>
                         <li>
@@ -61,8 +62,9 @@
                                 </a>
                             </form>
                         </li>
+                        
                     </ul>
-                </div>
+                </aside>
             </header>
             <!--=========================== FIN SIDEBAR ===========================-->
             

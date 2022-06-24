@@ -18,7 +18,7 @@ public class Asistencia implements Serializable{
     private Long idAsistencia;
         
     @ManyToOne
-    @JoinColumn(name="alumno_id_alumno")
+    @JoinColumn(name="id_alumno")
     private Alumno alumno;
     
     @NotEmpty

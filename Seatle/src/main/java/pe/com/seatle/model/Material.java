@@ -18,7 +18,7 @@ public class Material implements Serializable{
     private Long idMaterial;
             
     @ManyToOne
-    @JoinColumn(name="tema_id_tema")
+    @JoinColumn(name="id_tema")
     private Tema tema;
     
     @NotEmpty

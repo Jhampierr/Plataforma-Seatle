@@ -19,11 +19,11 @@ public class AulaVirtual implements Serializable {
     private Long idAulaVirtual;
         
     @ManyToOne
-    @JoinColumn(name="curso_id_curso")
+    @JoinColumn(name="id_curso")
     private Curso curso;
     
     @ManyToOne
-    @JoinColumn(name="curso_id_asistencia")
+    @JoinColumn(name="id_asistencia")
     private Asistencia asistencia;
         
     private String fechaUpdate;
