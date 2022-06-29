@@ -18,13 +18,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pe.com.seatle.util.CheckIP;
 import pe.com.seatle.model.Calificaciones;
-import pe.com.seatle.model.Alumno;
-import pe.com.seatle.model.Practica;
-import pe.com.seatle.model.Tarea;
+import pe.com.seatle.model.Clase;
 import pe.com.seatle.servicio.CalificacionesService;
-import pe.com.seatle.servicio.AlumnoService;
-import pe.com.seatle.servicio.PracticaService;
-import pe.com.seatle.servicio.TareaService;
+import pe.com.seatle.servicio.ClaseService;
 
 @Controller
 @Slf4j
@@ -34,13 +30,7 @@ public class ControladorCalificaciones {
     private CalificacionesService calificacionesService;
     
     @Autowired
-    private AlumnoService alumnoService;
-    
-    @Autowired
-    private TareaService tareaService;
-    
-    @Autowired
-    private PracticaService practicaService;
+    private ClaseService claseService;
     
     String fechaString = LocalDate.now().toString();
     
@@ -58,14 +48,10 @@ public class ControladorCalificaciones {
     @GetMapping("/agregarcalificaciones")
     public String agregarcalificaciones(Model model) {
         Calificaciones calificaciones = new Calificaciones();
-        List<Alumno> alumno = alumnoService.listarAlumno();
-        List<Tarea> tarea = tareaService.listarTarea();
-        List<Practica> practica = practicaService.listarPractica();
+        List<Clase> clase = claseService.listarClase();
         
         model.addAttribute("calificaciones", calificaciones);
-        model.addAttribute("alumno", alumno);
-        model.addAttribute("tarea", tarea);
-        model.addAttribute("practica", practica);
+        model.addAttribute("clase", clase);
         model.addAttribute("fechaString", fechaString);
         
         return "calificacionesUPD";
@@ -75,15 +61,11 @@ public class ControladorCalificaciones {
     public String guardarcalificaciones(@Valid @ModelAttribute Calificaciones calificaciones, BindingResult result,
             Model model, CheckIP check, RedirectAttributes attribute) {
         
-        List<Alumno> alumno = alumnoService.listarAlumno();
-        List<Tarea> tarea = tareaService.listarTarea();
-        List<Practica> practica = practicaService.listarPractica();
+        List<Clase> clase = claseService.listarClase();
         
         if (result.hasErrors()) {
             model.addAttribute("calificaciones", calificaciones);
-            model.addAttribute("alumno", alumno);
-            model.addAttribute("tarea", tarea);
-            model.addAttribute("practica", practica);
+            model.addAttribute("clase", clase);
             System.out.println("Existen errores en el formulario");
             return "calificacionesUPD";
         }
@@ -121,14 +103,10 @@ public class ControladorCalificaciones {
             return "calificacionesUPD";
         }
             
-        List<Alumno> alumno = alumnoService.listarAlumno();  
-        List<Tarea> tarea = tareaService.listarTarea();
-        List<Practica> practica = practicaService.listarPractica();
+        List<Clase> clase = claseService.listarClase();  
         
         model.addAttribute("calificaciones", calificaciones);
-        model.addAttribute("alumno", alumno);
-        model.addAttribute("tarea", tarea);
-        model.addAttribute("practica", practica);
+        model.addAttribute("clase", clase);
         model.addAttribute("fechaString", fechaString);
           
         return "calificacionesUPD";

@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pe.com.seatle.util.CheckIP;
 import pe.com.seatle.model.AulaVirtual;
-import pe.com.seatle.model.Curso;
+import pe.com.seatle.model.Clase;
 import pe.com.seatle.model.Asistencia;
 import pe.com.seatle.servicio.AulaVirtualService;
-import pe.com.seatle.servicio.CursoService;
 import pe.com.seatle.servicio.AsistenciaService;
+import pe.com.seatle.servicio.ClaseService;
 
 @Controller
 @Slf4j
@@ -32,7 +32,7 @@ public class ControladorAulaVirtual {
     private AulaVirtualService aulaVirtualService;
     
     @Autowired
-    private CursoService cursoService;
+    private ClaseService cursoService;
     
     @Autowired
     private AsistenciaService asistenciaService;
@@ -53,7 +53,7 @@ public class ControladorAulaVirtual {
     @GetMapping("/agregaraulaVirtual")
     public String agregaraulaVirtual(Model model) {
         AulaVirtual aulaVirtual = new AulaVirtual();
-        List<Curso> curso = cursoService.listarCurso();
+        List<Clase> curso = cursoService.listarCurso();
         List<Asistencia> asistencia = asistenciaService.listarAsistencia();
         
         model.addAttribute("aulaVirtual", aulaVirtual);
@@ -68,7 +68,7 @@ public class ControladorAulaVirtual {
     public String guardaraulaVirtual(@Valid @ModelAttribute AulaVirtual aulaVirtual, BindingResult result,
             Model model, CheckIP check, RedirectAttributes attribute) {
         
-        List<Curso> curso = cursoService.listarCurso();
+        List<Clase> curso = cursoService.listarCurso();
         List<Asistencia> asistencia = asistenciaService.listarAsistencia();
         
         if (result.hasErrors()) {
@@ -92,7 +92,33 @@ public class ControladorAulaVirtual {
         
         return "redirect:/aulaVirtual/";
     }
+    
+    @GetMapping("/detalleaulaVirtual/{idCurso}")
+    public String detalle(@PathVariable("idCurso") Long idCurso,
+            Model model, RedirectAttributes attribute) {
 
+        AulaVirtual aulaVirtual = null;
+        Clase curso = null;
+        
+        if (idCurso > 0) {
+            curso = cursoService.encontrarCurso(idCurso);
+            
+            if (curso == null) {
+                attribute.addFlashAttribute("error", "ATENCION: El ID del aulaVirtual no existe!");
+                return "redirect:/aulaVirtual/";
+            }
+        } else {
+            attribute.addFlashAttribute("error", "ATENCION: Error con el ID del aulaVirtual");
+            return "redirect:/aulaVirtual/";
+        }
+
+        model.addAttribute("aulaVirtual", aulaVirtual);
+        model.addAttribute("curso", curso);
+        model.addAttribute("fechaString", fechaString);
+        
+        return "aulaVirtualDetalle";
+    }
+    
     @GetMapping("/editaraulaVirtual/{idAulaVirtual}")
     public String editaraulaVirtual(@PathVariable("idAulaVirtual") Long idAulaVirtual,
             Model model, RedirectAttributes attribute) {
@@ -112,7 +138,7 @@ public class ControladorAulaVirtual {
             return "aulaVirtualUPD";
         }
             
-        List<Curso> curso = cursoService.listarCurso();  
+        List<Clase> curso = cursoService.listarCurso();  
         List<Asistencia> asistencia = asistenciaService.listarAsistencia();
         
         model.addAttribute("aulaVirtual", aulaVirtual);

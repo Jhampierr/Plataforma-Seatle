@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pe.com.seatle.util.CheckIP;
 import pe.com.seatle.model.Material;
-import pe.com.seatle.model.Tema;
+import pe.com.seatle.model.Materia;
 import pe.com.seatle.servicio.MaterialService;
-import pe.com.seatle.servicio.TemaService;
+import pe.com.seatle.servicio.MateriaService;
 
 @Controller
 @Slf4j
@@ -30,7 +30,7 @@ public class ControladorMaterial {
     private MaterialService materialService;
     
     @Autowired
-    private TemaService temaService;
+    private MateriaService materiaService;
     
     String fechaString = LocalDate.now().toString();
     
@@ -48,10 +48,10 @@ public class ControladorMaterial {
     @GetMapping("/agregarmaterial")
     public String agregarmaterial(Model model) {
         Material material = new Material();
-        List<Tema> tema = temaService.listarTema();
+        List<Materia> materia = materiaService.listarMateria();
         
         model.addAttribute("material", material);
-        model.addAttribute("tema", tema);
+        model.addAttribute("materia", materia);
         model.addAttribute("fechaString", fechaString);
         
         return "materialUPD";
@@ -61,11 +61,11 @@ public class ControladorMaterial {
     public String guardarmaterial(@Valid @ModelAttribute Material material, BindingResult result,
             Model model, CheckIP check, RedirectAttributes attribute) {
         
-        List<Tema> tema = temaService.listarTema();
+        List<Materia> materia = materiaService.listarMateria();
         
         if (result.hasErrors()) {
             model.addAttribute("material", material);
-            model.addAttribute("tema", tema);
+            model.addAttribute("materia", materia);
             System.out.println("Existen errores en el formulario");
             return "materialUPD";
         }
@@ -103,10 +103,10 @@ public class ControladorMaterial {
             return "materialUPD";
         }
             
-        List<Tema> tema = temaService.listarTema();
+        List<Materia> materia = materiaService.listarMateria();
         
         model.addAttribute("material", material);
-        model.addAttribute("tema", tema);
+        model.addAttribute("materia", materia);
         model.addAttribute("fechaString", fechaString);
           
         return "materialUPD";

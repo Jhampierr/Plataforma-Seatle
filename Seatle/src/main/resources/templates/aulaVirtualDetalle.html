@@ -12,14 +12,42 @@
             <nav th:replace="layout/plantilla :: nav"></nav>
             <div class="home-content">
                 <div class="overview-boxes" >
-                    <div class="box" th:each="curso : ${curso}">
+                    <!-- Init Box Item -->
+                    <div class="box">
                         <div class="left-side">
                             <div class="box-topic">
-                                <a th:text="${curso.grado.descripcion}"></a>
-                                <a th:text="${curso.nombre}"></a>
+                                <a th:href="@{/}">Muro</a>
                             </div>
                         </div>
                     </div>
+                    <!-- End Box Item -->
+                    <!-- Init Box Item -->
+                    <div class="box">
+                        <div class="left-side">
+                            <div class="box-topic">
+                                 <a th:href="@{/}">Clases</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Box Item -->
+                    <!-- Init Box Item -->
+                    <div class="box">
+                        <div class="left-side">
+                            <div class="box-topic">
+                                <a>Alumnos</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Box Item -->
+                    <!-- Init Box Item -->
+                    <div class="box">
+                        <div class="left-side">
+                            <div class="box-topic">
+                                <a>Calificaciones</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Box Item -->
                 </div>
             </div>
             <!--=========================== FIN HOME - CONTENT ===========================-->
@@ -33,15 +61,13 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Curso</th>
-                                <th>Grado</th>
-                                <th>Ver</th>
+                                <th>Tema</th>
                             </tr>
 
                             <tr th:each="curso : ${curso}">
                                 <td th:text="${curso.idCurso}">Mostrar Numero</td>
                                 <td th:text="${curso.nombre}">Mostrar Hora</td>
-                                <td th:text="${curso.grado.descripcion}">Mostrar Estado</td>
-                                <td th:text="${curso.grado.descripcion}">Mostrar Estado</td>
+                                <td th:text="${curso.tema.nombre}">Mostrar Estado</td>
                                 
                             </tr>
                         </table>

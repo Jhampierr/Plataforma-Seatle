@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import pe.com.seatle.model.Alumno;
 import pe.com.seatle.util.CheckIP;
 import pe.com.seatle.model.Practica;
-import pe.com.seatle.model.Tema;
+import pe.com.seatle.model.Materia;
+import pe.com.seatle.servicio.AlumnoService;
 import pe.com.seatle.servicio.PracticaService;
-import pe.com.seatle.servicio.TemaService;
+import pe.com.seatle.servicio.MateriaService;
 
 @Controller
 @Slf4j
@@ -30,7 +32,10 @@ public class ControladorPractica {
     private PracticaService practicaService;
     
     @Autowired
-    private TemaService temaService;
+    private MateriaService materiaService;
+    
+    @Autowired
+    private AlumnoService alumnoService;
     
     String fechaString = LocalDate.now().toString();
     
@@ -48,10 +53,12 @@ public class ControladorPractica {
     @GetMapping("/agregarpractica")
     public String agregarpractica(Model model) {
         Practica practica = new Practica();
-        List<Tema> tema = temaService.listarTema();
+        List<Materia> materia = materiaService.listarMateria();
+        List<Alumno> alumno = alumnoService.listarAlumno();
         
         model.addAttribute("practica", practica);
-        model.addAttribute("tema", tema);
+        model.addAttribute("materia", materia);
+        model.addAttribute("alumno", alumno);
         model.addAttribute("fechaString", fechaString);
         
         return "practicaUPD";
@@ -61,11 +68,13 @@ public class ControladorPractica {
     public String guardarpractica(@Valid @ModelAttribute Practica practica, BindingResult result,
             Model model, CheckIP check, RedirectAttributes attribute) {
         
-        List<Tema> tema = temaService.listarTema();
+        List<Materia> materia = materiaService.listarMateria();
+        List<Alumno> alumno = alumnoService.listarAlumno();
         
         if (result.hasErrors()) {
             model.addAttribute("practica", practica);
-            model.addAttribute("tema", tema);
+            model.addAttribute("materia", materia);
+            model.addAttribute("alumno", alumno);
             System.out.println("Existen errores en el formulario");
             return "practicaUPD";
         }
@@ -103,10 +112,12 @@ public class ControladorPractica {
             return "practicaUPD";
         }
             
-        List<Tema> tema = temaService.listarTema();
+        List<Materia> materia = materiaService.listarMateria();
+        List<Alumno> alumno = alumnoService.listarAlumno();
         
         model.addAttribute("practica", practica);
-        model.addAttribute("tema", tema);
+        model.addAttribute("materia", materia);
+        model.addAttribute("alumno", alumno);
         model.addAttribute("fechaString", fechaString);
           
         return "practicaUPD";
