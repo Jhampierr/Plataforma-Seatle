@@ -223,7 +223,7 @@ nav .search-box .bx-search{
     flex-wrap: wrap;
 }
 .home-content .overview-boxes .box{
-    width: calc(100% / 4 - 15px);
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -460,7 +460,7 @@ table tr td .btn-detail:hover{
 }
 @media screen and (max-width: 1018px){
     .home-content .overview-boxes .box{
-        width: calc(100% / 2 - 15px);
+        width: 100%;
     }
 }
 @media screen and (max-width: 1078px){

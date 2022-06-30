@@ -60,15 +60,16 @@
                         <table>
                             <tr>
                                 <th>ID</th>
-                                <th>Curso</th>
-                                <th>Tema</th>
+                                <th>Apellido</th>
+                                <th>Nombre</th>
+                                <th>Estado</th>
                             </tr>
 
-                            <tr th:each="clase : ${clase}">
-                                <td th:text="${clase.idClase}">Mostrar Numero</td>
-                                <td th:text="${clase.material.materia.nombre}">Mostrar Hora</td>
-                                <td th:text="${clase.material.titulo}">Mostrar Estado</td>
-                                
+                            <tr th:each="asistencia : ${asistencia}">
+                                <td th:text="${asistencia.alumno.idAlumno}">Mostrar Numero</td>
+                                <td th:text="${asistencia.alumno.apellido}">Mostrar Numero</td>
+                                <td th:text="${asistencia.alumno.nombre}">Mostrar Hora</td>
+                                <td th:text="${asistencia.estado}">Mostrar Estado</td>
                             </tr>
                         </table>
 

@@ -27,6 +27,7 @@ import pe.com.seatle.servicio.MaterialService;
 import pe.com.seatle.servicio.PracticaService;
 import pe.com.seatle.servicio.TareaService;
 import pe.com.seatle.servicio.ClaseService;
+import pe.com.seatle.servicio.UsuarioService;
 
 @Controller
 @Slf4j
@@ -47,7 +48,9 @@ public class ControladorClase {
     @Autowired
     private PracticaService practicaService;
     
-    
+    @Autowired
+    private UsuarioService usuarioService;
+        
     String fechaString = LocalDate.now().toString();
     
     @GetMapping("/clase")
@@ -60,19 +63,23 @@ public class ControladorClase {
         
         return "claseSEL";
     }
-    
-//    @GetMapping("/misclases")
-//    public String misclases(Model model) {
+        
+//    @GetMapping("/muro")
+//    public String muro(Model model) {
 //        var clase = claseService.listarClase();
 //        var profesor = profesorService.listarProfesor();
-//                
+//        var usuario = usuarioService.listarUsuario();
+//        
+//        String up1 = "agarcia@li.edu.pe";
+//        
 //        log.info("Ejecutando el controlador Spring MVC");
 //        model.addAttribute("clase", clase);
-//        model.addAttribute("profesor", profesor);        
-//        
+//        model.addAttribute("profesor", profesor);
+//        model.addAttribute("usuario", usuario);
+//        model.addAttribute("up1", up1);
 //        model.addAttribute("fechaString", fechaString);
 //
-//        return "misClases";
+//        return "index";
 //    }
     
     @GetMapping("/agregarclase")

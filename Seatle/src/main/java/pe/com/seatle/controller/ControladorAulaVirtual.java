@@ -25,6 +25,8 @@ import pe.com.seatle.servicio.AulaVirtualService;
 import pe.com.seatle.servicio.AsistenciaService;
 import pe.com.seatle.servicio.CalificacionesService;
 import pe.com.seatle.servicio.ClaseService;
+import pe.com.seatle.servicio.ProfesorService;
+import pe.com.seatle.servicio.UsuarioService;
 
 @Controller
 @Slf4j
@@ -42,6 +44,12 @@ public class ControladorAulaVirtual {
     @Autowired
     private CalificacionesService calificacionesService;
     
+    @Autowired
+    private UsuarioService usuarioService;
+    
+    @Autowired
+    private ProfesorService profesorService;
+    
     String fechaString = LocalDate.now().toString();
     
     @GetMapping("/aulaVirtual")
@@ -54,7 +62,61 @@ public class ControladorAulaVirtual {
         
         return "aulaVirtualSEL";
     }
+    
+    @GetMapping("/miaula")
+    public String miaula(Model model) {
+        var aulaVirtual = aulaVirtualService.listarAulaVirtual();
+        var clase = claseService.listarClase();
+        var asistencia = asistenciaService.listarAsistencia();
+        var calificaciones = calificacionesService.listarCalificaciones();
+        var profesor = profesorService.listarProfesor();
+        var usuario = usuarioService.listarUsuario();
+        
+        String up1 = "agarcia@li.edu.pe";
+        
+        log.info("Ejecutando el controlador Spring MVC");
+        model.addAttribute("aulaVirtual", aulaVirtual);
+        model.addAttribute("clase", clase);
+        model.addAttribute("asistencia", asistencia);
+        model.addAttribute("calificaciones", calificaciones);
+        model.addAttribute("profesor", profesor);
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("up1", up1);
+        model.addAttribute("fechaString", fechaString);
 
+        return "index";
+    }
+    
+    @GetMapping("/detalleaulaVirtual/{idClase}")
+    public String detalle(@PathVariable("idClase") Long idClase,
+            Model model, RedirectAttributes attribute) {
+
+        AulaVirtual aulaVirtual = null;
+        Clase clase = null;
+        Asistencia asistencia = null;
+        Calificaciones calificaciones = null;
+        
+        if (idClase > 0) {
+            clase = claseService.encontrarClase(idClase);
+            
+            if (clase == null) {
+                attribute.addFlashAttribute("error", "ATENCION: El ID del aulaVirtual no existe!");
+                return "redirect:/aulaVirtual/";
+            }
+        } else {
+            attribute.addFlashAttribute("error", "ATENCION: Error con el ID del aulaVirtual");
+            return "redirect:/aulaVirtual/";
+        }
+
+        model.addAttribute("aulaVirtual", aulaVirtual);
+        model.addAttribute("clase", clase);
+        model.addAttribute("asistencia", asistencia);
+        model.addAttribute("calificaciones", calificaciones);
+        model.addAttribute("fechaString", fechaString);
+        
+        return "aulaVirtualDetalle";
+    }
+    
     @GetMapping("/agregaraulaVirtual")
     public String agregaraulaVirtual(Model model) {
         AulaVirtual aulaVirtual = new AulaVirtual();
@@ -101,32 +163,6 @@ public class ControladorAulaVirtual {
         
         return "redirect:/aulaVirtual/";
     }
-    
-//    @GetMapping("/detalleaulaVirtual/{idClase}")
-//    public String detalle(@PathVariable("idClase") Long idClase,
-//            Model model, RedirectAttributes attribute) {
-//
-//        AulaVirtual aulaVirtual = null;
-//        Clase clase = null;
-//        
-//        if (idClase > 0) {
-//            clase = claseService.encontrarClase(idClase);
-//            
-//            if (clase == null) {
-//                attribute.addFlashAttribute("error", "ATENCION: El ID del aulaVirtual no existe!");
-//                return "redirect:/aulaVirtual/";
-//            }
-//        } else {
-//            attribute.addFlashAttribute("error", "ATENCION: Error con el ID del aulaVirtual");
-//            return "redirect:/aulaVirtual/";
-//        }
-//
-//        model.addAttribute("aulaVirtual", aulaVirtual);
-//        model.addAttribute("clase", clase);
-//        model.addAttribute("fechaString", fechaString);
-//        
-//        return "aulaVirtualDetalle";
-//    }
     
     @GetMapping("/editaraulaVirtual/{idAulaVirtual}")
     public String editaraulaVirtual(@PathVariable("idAulaVirtual") Long idAulaVirtual,

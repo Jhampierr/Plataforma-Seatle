@@ -26,4 +26,12 @@ public class Usuario implements Serializable {
     @OneToMany
     @JoinColumn(name="id_usuario")
     private List<Rol> roles;
+    
+    @ManyToOne
+    @JoinColumn(name="id_profesor")
+    private Profesor profesor;
+    
+    @ManyToOne
+    @JoinColumn(name="id_alumno")
+    private Alumno alumno;
 }

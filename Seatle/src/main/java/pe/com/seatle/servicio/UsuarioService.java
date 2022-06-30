@@ -1,6 +1,7 @@
 package pe.com.seatle.servicio;
 
 import java.util.ArrayList;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -37,4 +38,8 @@ public class UsuarioService implements UserDetailsService {
         return new User(usuario.getUsername(), usuario.getPassword(), roles);
     }
     
+    @Transactional(readOnly = true)
+    public List<Usuario> listarUsuario() {
+        return (List<Usuario>) usuarioDAo.findAll();
+    }
 }

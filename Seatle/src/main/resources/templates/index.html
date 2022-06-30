@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xlmns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <title>Inicio</title>
         <tag th:replace="layout/plantilla :: head"></tag>
@@ -14,36 +15,21 @@
                 <div class="overview-boxes" >
 
                     <!-- Init Box Item -->
-                    <div class="box">
-                        <div class="left-side">
-                            <div class="box-topic">
-                                5to Matematica
-                            </div>
-                            
+                    
+                   <div th:each="aulaVirtual : ${aulaVirtual}">
+                        <div  th:if="${aulaVirtual.getClase().getProfesor().getCorreo().equals(up1)}">
+                                <div class="box">
+                                    <div class="left-side">
+                                        <div class="box-topic">
+                                          <a th:text="${aulaVirtual.clase.material.materia.nombre}"></a><br>
+                                          <a th:text="${aulaVirtual.clase.profesor.nombre} + ' ' +${aulaVirtual.clase.profesor.apellido}"></a><br>
+                                          <a th:href="@{/detalleaulaVirtual/}+${aulaVirtual.clase.idClase}">Muro</a><br>
+                                          <a th:href="@{/detalleAsistencia/}+${aulaVirtual.asistencia.idAsistencia}">Asistencia</a><br>
+                                          <a th:href="@{/detalleCalificaciones/}+${aulaVirtual.calificaciones.idCalificaciones}">Calificaciones</a>
+                                      </div>
+                                  </div>
+                              </div>
                         </div>
-                        <i class='bx bx-shape-square'></i>
-                    </div>
-                    <!-- End Box Item -->
-                    <!-- Init Box Item -->
-                    <div class="box">
-                        <div class="left-side">
-                            <div class="box-topic">
-                                5to Comunicación
-                            </div>
-                            
-                        </div>
-                        <i class='bx bx-book'></i>
-                    </div>
-                    <!-- End Box Item -->
-                    <!-- Init Box Item -->
-                    <div class="box">
-                        <div class="left-side">
-                            <div class="box-topic">
-                                5to Ciencia y Tecnología
-                            </div>
-                            
-                        </div>
-                        <i class='bx bx-atom'></i>
                     </div>
                     <!-- End Box Item -->
                 </div>

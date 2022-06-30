@@ -47,6 +47,33 @@ public class ControladorAsistencia {
         return "asistenciaSEL";
     }
 
+    @GetMapping("/detalleAsistencia/{idAsistencia}")
+    public String detalle(@PathVariable("idAsistencia") Long idAsistencia,
+            Model model, RedirectAttributes attribute) {
+
+        
+        Asistencia asistencia = null;
+        Alumno alumno = null;
+        
+        if (idAsistencia > 0) {
+            asistencia = asistenciaService.encontrarAsistencia(idAsistencia);
+            
+            if (asistencia == null) {
+                attribute.addFlashAttribute("error", "ATENCION: El ID del aulaVirtual no existe!");
+                return "redirect:/asistencia/";
+            }
+        } else {
+            attribute.addFlashAttribute("error", "ATENCION: Error con el ID del aulaVirtual");
+            return "redirect:/asistencia/";
+        }
+
+        model.addAttribute("asistencia", asistencia);
+        model.addAttribute("alumno", alumno);
+        model.addAttribute("fechaString", fechaString);
+        
+        return "asistenciaDetalle";
+    }
+    
     @GetMapping("/agregarasistencia")
     public String agregarasistencia(Model model) {
         Asistencia asistencia = new Asistencia();

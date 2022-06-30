@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import pe.com.seatle.model.Alumno;
+import pe.com.seatle.model.Asistencia;
 import pe.com.seatle.util.CheckIP;
 import pe.com.seatle.model.Calificaciones;
 import pe.com.seatle.model.Clase;
@@ -44,7 +46,34 @@ public class ControladorCalificaciones {
         
         return "calificacionesSEL";
     }
+    
+    @GetMapping("/detalleCalificaciones/{idCalificaciones}")
+    public String detalle(@PathVariable("idCalificaciones") Long idCalificaciones,
+            Model model, RedirectAttributes attribute) {
 
+        
+        Calificaciones calificaciones = null;
+        Clase clase = null;
+        
+        if (idCalificaciones > 0) {
+            calificaciones = calificacionesService.encontrarCalificaciones(idCalificaciones);
+            
+            if (calificaciones == null) {
+                attribute.addFlashAttribute("error", "ATENCION: El ID del aulaVirtual no existe!");
+                return "redirect:/calificaciones/";
+            }
+        } else {
+            attribute.addFlashAttribute("error", "ATENCION: Error con el ID del aulaVirtual");
+            return "redirect:/calificaciones/";
+        }
+
+        model.addAttribute("calificaciones", calificaciones);
+        model.addAttribute("clase", clase);
+        model.addAttribute("fechaString", fechaString);
+        
+        return "calificacionesDetalle";
+    }
+    
     @GetMapping("/agregarcalificaciones")
     public String agregarcalificaciones(Model model) {
         Calificaciones calificaciones = new Calificaciones();
