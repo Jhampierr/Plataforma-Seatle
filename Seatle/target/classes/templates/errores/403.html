@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Acceso denegado</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <h2>Error Page</h2>
+        <div>Status code: <b>403</b></div>
+        <div>Acceso denegado.
+            No tienes permiso para ver esta pagina o ejecutar esta accion
+            <br/>
+            <a th:href="@{/web}"> [[#{accion.regresar}]]</a>
+        </div>
+    </body>
+</html>

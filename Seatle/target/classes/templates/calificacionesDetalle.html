@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Inicio</title>
+        <tag th:replace="layout/plantilla :: head"></tag>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <section class="home-section">
+            <!--=========================== INICIA HOME - CONTENT ===========================-->
+            <nav th:replace="layout/plantilla :: nav"></nav>
+            <div class="home-content">
+                <div class="overview-boxes" >
+                    <!-- Init Box Item -->
+                    <div class="box">
+                        <div class="left-side">
+                            <div class="box-topic">
+                                <a th:href="@{/}">Muro</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Box Item -->
+                    <!-- Init Box Item -->
+                    <div class="box">
+                        <div class="left-side">
+                            <div class="box-topic">
+                                 <a th:href="@{/}">Clases</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Box Item -->
+                    <!-- Init Box Item -->
+                    <div class="box">
+                        <div class="left-side">
+                            <div class="box-topic">
+                                <a th:href="@{/}">Alumnos</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Box Item -->
+                    <!-- Init Box Item -->
+                    <div class="box">
+                        <div class="left-side">
+                            <div class="box-topic">
+                                <a th:href="@{/}">Calificaciones</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Box Item -->
+                </div>
+            </div>
+            <!--=========================== FIN HOME - CONTENT ===========================-->
+                    <!--=========================== INICIO SALE - CONTENT ===========================-->
+            <div class="sales-boxes">
+                <!-- Init Box Item Left side -->
+                <div class="recent-sales box">
+                    <div class="title">Ultimas notas de Matematica</div>
+                    <div class="sales-details">
+                        <table>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tareas</th>
+                                <th>Nota</th>
+                                <th>Practicas</th>
+                                <th>Nota</th>
+                            </tr>
+
+                            <tr th:each="calificaciones : ${calificaciones}">
+                                <td th:text="${calificaciones.idCalificaciones}">Mostrar Numero</td>
+                                <td th:text="${calificaciones.clase.tarea.titulo}">Mostrar Numero</td>
+                                <td th:text="${calificaciones.clase.tarea.puntos}">Mostrar Numero</td>
+                                <td th:text="${calificaciones.clase.practica.titulo}">Mostrar Hora</td>
+                                <td th:text="${calificaciones.clase.practica.puntos}">Mostrar Estado</td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+                
+                <!-- End Box Item -->
+            
+            </div>
+            <!--=========================== FIN SALE - CONTENT ===========================-->
+            
+        </section>
+
+
+        <script src="./js/main.js"></script>
+    </body>
+</html>

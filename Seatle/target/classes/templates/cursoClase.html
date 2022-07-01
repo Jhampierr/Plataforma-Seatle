@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Inicio</title>
+        <tag th:replace="layout/plantilla :: head"></tag>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <section class="home-section">
+            <!--=========================== INICIA HOME - CONTENT ===========================-->
+            <nav th:replace="layout/plantilla :: nav"></nav>
+            <div class="home-content">
+                <div class="overview-boxes" >
+                    <!-- Init Box Item -->
+                    <div class="box">
+                        <div class="left-side">
+                            <div class="box-topic">
+                                <a th:href="@{redirect:/aulaVirtual}">Muro</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Box Item -->
+                    <!-- Init Box Item -->
+                    <div class="box">
+                        <div class="left-side">
+                            <div class="box-topic" th:each="curso : ${curso}">
+                                 <a th:href="@{/detalleaulaVirtual/}+${curso.idCurso}">Clases</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Box Item -->
+                    <!-- Init Box Item -->
+                    <div class="box">
+                        <div class="left-side">
+                            <div class="box-topic">
+                                <a>Alumnos</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Box Item -->
+                    <!-- Init Box Item -->
+                    <div class="box">
+                        <div class="left-side">
+                            <div class="box-topic">
+                                <a>Calificaciones</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Box Item -->
+                </div>
+            </div>
+            <!--=========================== FIN HOME - CONTENT ===========================-->
+                    <!--=========================== INICIO SALE - CONTENT ===========================-->
+            <div class="sales-boxes">
+                <!-- Init Box Item Left side -->
+                <div class="recent-sales box">
+                    <div class="title">Ultimas notas de Matematica</div>
+                    <div class="sales-details">
+                        <table>
+                            <tr>
+                                <th>ID</th>
+                                <th>Curso</th>
+                                <th>Ver</th>
+                            </tr>
+
+                            <tr th:each="aulaVirtual : ${aulaVirtual}">
+                                <td th:text="${aulaVirtual.idAulaVirtual}">Mostrar Numero</td>
+                                <td th:text="${aulaVirtual.curso.nombre}">Mostrar Hora</td>
+                                <td th:text="${aulaVirtual.curso.tema.nombre}">Mostrar Estado</td>
+                                
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+                
+                <!-- End Box Item -->
+            
+            </div>
+            <!--=========================== FIN SALE - CONTENT ===========================-->
+            
+        </section>
+
+
+        <script src="./js/main.js"></script>
+    </body>
+</html>
