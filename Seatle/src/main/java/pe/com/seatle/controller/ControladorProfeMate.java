@@ -49,7 +49,21 @@ public class ControladorProfeMate {
         
         return "profeMateSEL";
     }
-
+    
+    @GetMapping("/principal")
+    public String principal(Model model) {
+        var profeMate = profeMateService.listarProfeMate();
+        
+        String up1 = "agarcia@li.edu.pe";
+        
+        log.info("Ejecutando el controlador Spring MVC");
+        model.addAttribute("profeMate", profeMate);
+        model.addAttribute("up1", up1);
+        model.addAttribute("fechaString", fechaString);
+        
+        return "index";
+    }
+    
     @GetMapping("/agregarprofeMate")
     public String agregarprofeMate(Model model) {
         ProfeMate profeMate = new ProfeMate();

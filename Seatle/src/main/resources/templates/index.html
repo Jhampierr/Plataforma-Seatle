@@ -15,16 +15,14 @@
                 <div class="overview-boxes" >
 
                     <!-- Init Box Item -->
-                   <div th:each="aulaVirtual : ${aulaVirtual}">
-                        <div  th:if="${aulaVirtual.getClase().getProfesor().getCorreo().equals(up1)}">
+                   <div th:each="profeMate : ${profeMate}">
+                        <div  th:if="${profeMate.getProfesor().getCorreo().equals(up1)}">
                                 <div class="box">
                                     <div class="left-side">
                                         <div class="box-topic">
-                                          <a th:text="${aulaVirtual.clase.material.materia.nombre}"></a><br>
-                                          <a th:text="${aulaVirtual.clase.profesor.nombre} + ' ' +${aulaVirtual.clase.profesor.apellido}"></a><br>
-                                          <a th:href="@{/detalleaulaVirtual/}+${aulaVirtual.clase.profesor.idProfesor}">Muro</a><br>
-                                          <a th:href="@{/detalleAsistencia/}+${aulaVirtual.asistencia.idAsistencia}">Asistencia</a><br>
-                                          <a th:href="@{/detalleCalificaciones/}+${aulaVirtual.calificaciones.idCalificaciones}">Calificaciones</a>
+                                          <a th:text="${profeMate.materia.nombre}"></a><br>
+                                          <a th:text="${profeMate.profesor.nombre} + ' ' +${profeMate.profesor.apellido}"></a><br>
+                                          <a th:href="@{/miClase/}+${profeMate.profesor.idProfesor}">Muro</a><br>
                                       </div>
                                   </div>
                               </div>

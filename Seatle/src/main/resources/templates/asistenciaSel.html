@@ -25,16 +25,7 @@
                     <div class="box">
                         <div class="left-side">
                             <div class="box-topic">
-                                 <a th:href="@{/}">Clases</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Box Item -->
-                    <!-- Init Box Item -->
-                    <div class="box">
-                        <div class="left-side">
-                            <div class="box-topic">
-                                <a th:href="@{/}">Alumnos</a>
+                                <a th:href="@{/asistencia}">Alumnos</a>
                             </div>
                         </div>
                     </div>
@@ -66,13 +57,13 @@
                             </tr>
 
                             <tr th:each="asistencia : ${asistencia}">
-                                <td th:text="${asistencia.alumno.idAlumno}">Mostrar Numero</td>
-                                <td th:text="${asistencia.alumno.apellido}">Mostrar Numero</td>
-                                <td th:text="${asistencia.alumno.nombre}">Mostrar Hora</td>
+                                <td th:text="${asistencia.alumMate.alumno.idAlumno}">Mostrar Numero</td>
+                                <td th:text="${asistencia.alumMate.alumno.apellido}">Mostrar Numero</td>
+                                <td th:text="${asistencia.alumMate.alumno.nombre}">Mostrar Hora</td>
                                 <td th:text="${asistencia.estado}">Mostrar Estado</td>
                             </tr>
                         </table>
-
+                        
                     </div>
                 </div>
                 

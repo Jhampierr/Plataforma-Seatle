@@ -33,8 +33,6 @@ public class Clase implements Serializable{
     @JoinColumn(name="id_practica")
     private Practica practica;
     
-    private String descripcion;
-    
     private String fechaUpdate;
     private String hostName;
     private String ip;

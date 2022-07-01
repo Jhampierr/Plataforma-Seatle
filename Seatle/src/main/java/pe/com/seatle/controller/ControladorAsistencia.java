@@ -37,16 +37,18 @@ public class ControladorAsistencia {
     @GetMapping("/asistencia")
     public String asistencia(Model model) {
         var asistencia = asistenciaService.listarAsistencia();
+        var alumMate = alumMateService.listarAlumMate();
 
         log.info("Ejecutando el controlador Spring MVC");
         model.addAttribute("asistencia", asistencia);
+        model.addAttribute("alumMate", alumMate);
         model.addAttribute("fechaString", fechaString);
         
         return "asistenciaSEL";
     }
 
-    @GetMapping("/detalleAsistencia/{idAsistencia}")
-    public String detalle(@PathVariable("idAsistencia") Long idAsistencia,
+    @GetMapping("/miAsistencia/{idAsistencia}")
+    public String miAsistencia(@PathVariable("idAsistencia") Long idAsistencia,
             Model model, RedirectAttributes attribute) {
 
         

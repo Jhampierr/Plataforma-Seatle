@@ -25,16 +25,7 @@
                     <div class="box">
                         <div class="left-side">
                             <div class="box-topic">
-                                 <a th:href="@{/}">Clases</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Box Item -->
-                    <!-- Init Box Item -->
-                    <div class="box">
-                        <div class="left-side">
-                            <div class="box-topic">
-                                <a th:href="@{/}">Alumnos</a>
+                                <a th:href="@{/asistencia}">Alumnos</a>
                             </div>
                         </div>
                     </div>
@@ -62,15 +53,17 @@
                                 <th>ID</th>
                                 <th>Curso</th>
                                 <th>Tema</th>
-                                <th>Tema</th>
+                                <th>material</th>
+                                <th>tarea</th>
                             </tr>
 
-                            <tr th:each="clase : ${clase}">
-                                <div  th:if="${clase.getProfesor().getIdProfesor().equals(profesor.idProfesor)}">
-                                <td th:text="${clase.idClase}">Mostrar Numero</td>
-                                <td th:text="${clase.material.materia.nombre}">Mostrar Hora</td>
-                                <td th:text="${clase.material.titulo}">Mostrar Estado</td>
-                                <td th:text="${clase.profesor.correo}">Mostrar Estado</td>
+                            <tr th:each="clase2 : ${clase2}">
+                                <div  th:if="${clase2.material.tema.materia.idMateria == profesor.idProfesor}">
+                                    <td th:text="${clase2.idClase}">Mostrar Numero</td>
+                                    <td th:text="${clase2.profeMate.materia.nombre}">Mostrar Numero</td>
+                                    <td th:text="${clase2.material.tema.nombre}">Mostrar Hora</td>
+                                    <td th:text="${clase2.material.titulo}">Mostrar Hora</td>
+                                    <td th:text="${clase2.tarea.titulo}">Mostrar Estado</td>
                                 </div>
                             </tr>
                         </table>
