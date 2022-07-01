@@ -18,8 +18,8 @@ public class Practica implements Serializable{
     private Long idPractica;
             
     @ManyToOne
-    @JoinColumn(name="id_materia")
-    private Materia materia;
+    @JoinColumn(name="id_tema")
+    private Tema tema;
     
     @ManyToOne
     @JoinColumn(name="id_alumno")

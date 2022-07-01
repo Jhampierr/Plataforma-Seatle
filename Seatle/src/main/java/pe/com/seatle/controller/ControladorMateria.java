@@ -28,10 +28,7 @@ public class ControladorMateria {
 
     @Autowired
     private MateriaService materiaService;
-    
-    @Autowired
-    private TemaService temaService;
-    
+        
     String fechaString = LocalDate.now().toString();
     
     @GetMapping("/materia")
@@ -48,10 +45,8 @@ public class ControladorMateria {
     @GetMapping("/agregarmateria")
     public String agregarmateria(Model model) {
         Materia materia = new Materia();
-        List<Tema> tema = temaService.listarTema();
         
         model.addAttribute("materia", materia);
-        model.addAttribute("tema", tema);
         model.addAttribute("fechaString", fechaString);
         
         return "materiaUPD";
@@ -60,12 +55,9 @@ public class ControladorMateria {
     @PostMapping("/guardarmateria")
     public String guardarmateria(@Valid @ModelAttribute Materia materia, BindingResult result,
             Model model, CheckIP check, RedirectAttributes attribute) {
-        
-        List<Tema> tema = temaService.listarTema();
-        
+                
         if (result.hasErrors()) {
             model.addAttribute("materia", materia);
-            model.addAttribute("tema", tema);
             System.out.println("Existen errores en el formulario");
             return "materiaUPD";
         }
@@ -103,10 +95,7 @@ public class ControladorMateria {
             return "materiaUPD";
         }
             
-        List<Tema> tema = temaService.listarTema();
-        
         model.addAttribute("materia", materia);
-        model.addAttribute("tema", tema);
         model.addAttribute("fechaString", fechaString);
           
         return "materiaUPD";

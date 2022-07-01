@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import pe.com.seatle.model.AlumMate;
 import pe.com.seatle.model.Alumno;
 import pe.com.seatle.model.Asistencia;
 import pe.com.seatle.util.CheckIP;
 import pe.com.seatle.model.Calificaciones;
 import pe.com.seatle.model.Clase;
+import pe.com.seatle.servicio.AlumMateService;
 import pe.com.seatle.servicio.CalificacionesService;
 import pe.com.seatle.servicio.ClaseService;
 
@@ -33,6 +35,9 @@ public class ControladorCalificaciones {
     
     @Autowired
     private ClaseService claseService;
+    
+    @Autowired
+    private AlumMateService alumMateService;
     
     String fechaString = LocalDate.now().toString();
     
@@ -78,9 +83,11 @@ public class ControladorCalificaciones {
     public String agregarcalificaciones(Model model) {
         Calificaciones calificaciones = new Calificaciones();
         List<Clase> clase = claseService.listarClase();
+        List<AlumMate> alumMate = alumMateService.listarAlumMate();
         
         model.addAttribute("calificaciones", calificaciones);
         model.addAttribute("clase", clase);
+        model.addAttribute("alumMate", alumMate);
         model.addAttribute("fechaString", fechaString);
         
         return "calificacionesUPD";
@@ -91,10 +98,12 @@ public class ControladorCalificaciones {
             Model model, CheckIP check, RedirectAttributes attribute) {
         
         List<Clase> clase = claseService.listarClase();
+        List<AlumMate> alumMate = alumMateService.listarAlumMate();
         
         if (result.hasErrors()) {
             model.addAttribute("calificaciones", calificaciones);
             model.addAttribute("clase", clase);
+            model.addAttribute("alumMate", alumMate);
             System.out.println("Existen errores en el formulario");
             return "calificacionesUPD";
         }
@@ -132,10 +141,12 @@ public class ControladorCalificaciones {
             return "calificacionesUPD";
         }
             
-        List<Clase> clase = claseService.listarClase();  
+        List<Clase> clase = claseService.listarClase();
+        List<AlumMate> alumMate = alumMateService.listarAlumMate();
         
         model.addAttribute("calificaciones", calificaciones);
         model.addAttribute("clase", clase);
+        model.addAttribute("alumMate", alumMate);
         model.addAttribute("fechaString", fechaString);
           
         return "calificacionesUPD";

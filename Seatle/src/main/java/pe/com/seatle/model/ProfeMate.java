@@ -7,24 +7,22 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name ="tema")
-//Esto se usa porque en la bd dice "tema", pero en la clase java dice "Tema"
-public class Tema implements Serializable{
+@Table(name ="profe_mate")
+//Esto se usa porque en la bd dice "profeMate", pero en la clase java dice "ProfeMate"
+public class ProfeMate implements Serializable{
     
     private static final long serialVersionUID = 1L;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Indica cual es el campo de la llave primaria de nuestra tabla en la BD
-    private Long idTema;
+    private Long idProfeMate;
     
     @ManyToOne
     @JoinColumn(name="id_materia")
     private Materia materia;
     
-    @NotEmpty
-    private String nombre;
+    @ManyToOne
+    @JoinColumn(name="id_profesor")
+    private Profesor profesor;
     
-    private String fechaUpdate;
-    private String hostName;
-    private String ip;
 }

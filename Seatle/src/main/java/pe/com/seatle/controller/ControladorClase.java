@@ -18,16 +18,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pe.com.seatle.util.CheckIP;
 import pe.com.seatle.model.Clase;
-import pe.com.seatle.model.Profesor;
+import pe.com.seatle.model.ProfeMate;
 import pe.com.seatle.model.Material;
 import pe.com.seatle.model.Practica;
 import pe.com.seatle.model.Tarea;
-import pe.com.seatle.servicio.ProfesorService;
+import pe.com.seatle.servicio.ProfeMateService;
 import pe.com.seatle.servicio.MaterialService;
 import pe.com.seatle.servicio.PracticaService;
 import pe.com.seatle.servicio.TareaService;
 import pe.com.seatle.servicio.ClaseService;
-import pe.com.seatle.servicio.UsuarioService;
 
 @Controller
 @Slf4j
@@ -37,7 +36,7 @@ public class ControladorClase {
     private ClaseService claseService;
     
     @Autowired
-    private ProfesorService profesorService;
+    private ProfeMateService profeMateService;
         
     @Autowired
     private MaterialService materialService;
@@ -47,10 +46,7 @@ public class ControladorClase {
     
     @Autowired
     private PracticaService practicaService;
-    
-    @Autowired
-    private UsuarioService usuarioService;
-        
+            
     String fechaString = LocalDate.now().toString();
     
     @GetMapping("/clase")
@@ -67,14 +63,14 @@ public class ControladorClase {
 //    @GetMapping("/muro")
 //    public String muro(Model model) {
 //        var clase = claseService.listarClase();
-//        var profesor = profesorService.listarProfesor();
+//        var profeMate = profeMateService.listarProfeMate();
 //        var usuario = usuarioService.listarUsuario();
 //        
 //        String up1 = "agarcia@li.edu.pe";
 //        
 //        log.info("Ejecutando el controlador Spring MVC");
 //        model.addAttribute("clase", clase);
-//        model.addAttribute("profesor", profesor);
+//        model.addAttribute("profeMate", profeMate);
 //        model.addAttribute("usuario", usuario);
 //        model.addAttribute("up1", up1);
 //        model.addAttribute("fechaString", fechaString);
@@ -85,13 +81,13 @@ public class ControladorClase {
     @GetMapping("/agregarclase")
     public String agregarclase(Model model) {
         Clase clase = new Clase();
-        List<Profesor> profesor = profesorService.listarProfesor();
+        List<ProfeMate> profeMate = profeMateService.listarProfeMate();
         List<Material> material = materialService.listarMaterial();
         List<Tarea> tarea = tareaService.listarTarea();
         List<Practica> practica = practicaService.listarPractica();
         
         model.addAttribute("clase", clase);
-        model.addAttribute("profesor", profesor);
+        model.addAttribute("profeMate", profeMate);
         model.addAttribute("material", material);
         model.addAttribute("tarea", tarea);
         model.addAttribute("practica", practica);
@@ -127,14 +123,14 @@ public class ControladorClase {
     public String guardarclase(@Valid @ModelAttribute Clase clase, BindingResult result,
             Model model, CheckIP check, RedirectAttributes attribute) {
         
-        List<Profesor> profesor = profesorService.listarProfesor();
+        List<ProfeMate> profeMate = profeMateService.listarProfeMate();
         List<Material> material = materialService.listarMaterial();
         List<Tarea> tarea = tareaService.listarTarea();
         List<Practica> practica = practicaService.listarPractica();
         
         if (result.hasErrors()) {
             model.addAttribute("clase", clase);
-            model.addAttribute("profesor", profesor);
+            model.addAttribute("profeMate", profeMate);
             model.addAttribute("material", material);
             model.addAttribute("tarea", tarea);
             model.addAttribute("practica", practica);
@@ -175,13 +171,13 @@ public class ControladorClase {
             return "claseUPD";
         }
             
-        List<Profesor> profesor = profesorService.listarProfesor();
+        List<ProfeMate> profeMate = profeMateService.listarProfeMate();
         List<Material> material = materialService.listarMaterial();
         List<Tarea> tarea = tareaService.listarTarea();
         List<Practica> practica = practicaService.listarPractica();
         
         model.addAttribute("clase", clase);
-        model.addAttribute("profesor", profesor);
+        model.addAttribute("profeMate", profeMate);
             model.addAttribute("material", material);
             model.addAttribute("tarea", tarea);
             model.addAttribute("practica", practica);

@@ -18,8 +18,8 @@ public class Clase implements Serializable{
     private Long idClase;
     
     @ManyToOne
-    @JoinColumn(name="id_profesor")
-    private Profesor profesor;
+    @JoinColumn(name="id_profe_mate")
+    private ProfeMate profeMate;
     
     @ManyToOne
     @JoinColumn(name="id_material")

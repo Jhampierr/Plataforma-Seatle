@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import pe.com.seatle.model.Materia;
 import pe.com.seatle.util.CheckIP;
 import pe.com.seatle.model.Tema;
-import pe.com.seatle.model.Grado;
-import pe.com.seatle.model.Seccion;
+import pe.com.seatle.servicio.MateriaService;
 import pe.com.seatle.servicio.TemaService;
 
 @Controller
@@ -28,6 +28,9 @@ public class ControladorTema {
 
     @Autowired
     private TemaService temaService;
+    
+    @Autowired
+    private MateriaService materiaService;
         
     String fechaString = LocalDate.now().toString();
     
@@ -45,8 +48,10 @@ public class ControladorTema {
     @GetMapping("/agregartema")
     public String agregartema(Model model) {
         Tema tema = new Tema();
+        List<Materia> materia = materiaService.listarMateria();
         
         model.addAttribute("tema", tema);
+        model.addAttribute("materia", materia);
         model.addAttribute("fechaString", fechaString);
         
         return "temaUPD";
@@ -55,9 +60,12 @@ public class ControladorTema {
     @PostMapping("/guardartema")
     public String guardartema(@Valid @ModelAttribute Tema tema, BindingResult result,
             Model model, CheckIP check, RedirectAttributes attribute) {
-                
+        
+        List<Materia> materia = materiaService.listarMateria();
+        
         if (result.hasErrors()) {
             model.addAttribute("tema", tema);
+            model.addAttribute("materia", materia);
             System.out.println("Existen errores en el formulario");
             return "temaUPD";
         }
@@ -95,7 +103,10 @@ public class ControladorTema {
             return "temaUPD";
         }
         
+        List<Materia> materia = materiaService.listarMateria();
+        
         model.addAttribute("tema", tema);
+        model.addAttribute("materia", materia);
         model.addAttribute("fechaString", fechaString);
           
         return "temaUPD";

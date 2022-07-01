@@ -19,10 +19,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pe.com.seatle.model.Alumno;
 import pe.com.seatle.util.CheckIP;
 import pe.com.seatle.model.Tarea;
-import pe.com.seatle.model.Materia;
+import pe.com.seatle.model.Tema;
 import pe.com.seatle.servicio.AlumnoService;
 import pe.com.seatle.servicio.TareaService;
-import pe.com.seatle.servicio.MateriaService;
+import pe.com.seatle.servicio.TemaService;
 
 @Controller
 @Slf4j
@@ -32,7 +32,7 @@ public class ControladorTarea {
     private TareaService tareaService;
     
     @Autowired
-    private MateriaService materiaService;
+    private TemaService temaService;
     
     @Autowired
     private AlumnoService alumnoService;
@@ -53,11 +53,11 @@ public class ControladorTarea {
     @GetMapping("/agregartarea")
     public String agregartarea(Model model) {
         Tarea tarea = new Tarea();
-        List<Materia> materia = materiaService.listarMateria();
+        List<Tema> tema = temaService.listarTema();
         List<Alumno> alumno = alumnoService.listarAlumno();
         
         model.addAttribute("tarea", tarea);
-        model.addAttribute("materia", materia);
+        model.addAttribute("tema", tema);
         model.addAttribute("alumno", alumno);
         model.addAttribute("fechaString", fechaString);
         
@@ -68,12 +68,12 @@ public class ControladorTarea {
     public String guardartarea(@Valid @ModelAttribute Tarea tarea, BindingResult result,
             Model model, CheckIP check, RedirectAttributes attribute) {
         
-        List<Materia> materia = materiaService.listarMateria();
+        List<Tema> tema = temaService.listarTema();
         List<Alumno> alumno = alumnoService.listarAlumno();
         
         if (result.hasErrors()) {
             model.addAttribute("tarea", tarea);
-            model.addAttribute("materia", materia);
+            model.addAttribute("tema", tema);
             model.addAttribute("alumno", alumno);
             System.out.println("Existen errores en el formulario");
             return "tareaUPD";
@@ -112,11 +112,11 @@ public class ControladorTarea {
             return "tareaUPD";
         }
             
-        List<Materia> materia = materiaService.listarMateria();
+        List<Tema> tema = temaService.listarTema();
         List<Alumno> alumno = alumnoService.listarAlumno();
         
         model.addAttribute("tarea", tarea);
-        model.addAttribute("materia", materia);
+        model.addAttribute("tema", tema);
         model.addAttribute("alumno", alumno);
         model.addAttribute("fechaString", fechaString);
           

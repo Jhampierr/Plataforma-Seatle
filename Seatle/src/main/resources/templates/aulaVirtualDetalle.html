@@ -62,13 +62,16 @@
                                 <th>ID</th>
                                 <th>Curso</th>
                                 <th>Tema</th>
+                                <th>Tema</th>
                             </tr>
 
                             <tr th:each="clase : ${clase}">
+                                <div  th:if="${clase.getProfesor().getIdProfesor().equals(profesor.idProfesor)}">
                                 <td th:text="${clase.idClase}">Mostrar Numero</td>
                                 <td th:text="${clase.material.materia.nombre}">Mostrar Hora</td>
                                 <td th:text="${clase.material.titulo}">Mostrar Estado</td>
-                                
+                                <td th:text="${clase.profesor.correo}">Mostrar Estado</td>
+                                </div>
                             </tr>
                         </table>
 

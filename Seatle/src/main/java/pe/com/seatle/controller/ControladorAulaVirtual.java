@@ -21,6 +21,7 @@ import pe.com.seatle.model.AulaVirtual;
 import pe.com.seatle.model.Clase;
 import pe.com.seatle.model.Asistencia;
 import pe.com.seatle.model.Calificaciones;
+import pe.com.seatle.model.Profesor;
 import pe.com.seatle.servicio.AulaVirtualService;
 import pe.com.seatle.servicio.AsistenciaService;
 import pe.com.seatle.servicio.CalificacionesService;
@@ -63,7 +64,7 @@ public class ControladorAulaVirtual {
         return "aulaVirtualSEL";
     }
     
-    @GetMapping("/miaula")
+    @GetMapping("/miaula") //INDEX
     public String miaula(Model model) {
         var aulaVirtual = aulaVirtualService.listarAulaVirtual();
         var clase = claseService.listarClase();
@@ -72,7 +73,11 @@ public class ControladorAulaVirtual {
         var profesor = profesorService.listarProfesor();
         var usuario = usuarioService.listarUsuario();
         
-        String up1 = "agarcia@li.edu.pe";
+//        for(var c : clase){
+//            c.getProfesor().getIdProfesor()==1
+//        }
+        
+        String up1 = "atoledo@li.edu.pe";
         
         log.info("Ejecutando el controlador Spring MVC");
         model.addAttribute("aulaVirtual", aulaVirtual);
@@ -87,23 +92,27 @@ public class ControladorAulaVirtual {
         return "index";
     }
     
-    @GetMapping("/detalleaulaVirtual/{idClase}")
-    public String detalle(@PathVariable("idClase") Long idClase,
+    @GetMapping("/detalleaulaVirtual/{idProfesor}") //MURO
+    public String detalle(@PathVariable("idProfesor") Long idProfesor,
             Model model, RedirectAttributes attribute) {
 
         AulaVirtual aulaVirtual = null;
-        Clase clase = null;
+        List<Clase> clase = claseService.listarClase();
         Asistencia asistencia = null;
         Calificaciones calificaciones = null;
+        Profesor profesor = null;
         
-        if (idClase > 0) {
-            clase = claseService.encontrarClase(idClase);
+        if (idProfesor > 0) {
+            System.out.println("Entro al primer if");
+            profesor = profesorService.encontrarProfesor(idProfesor);
             
-            if (clase == null) {
+            if (profesor == null) {
+                 System.out.println("Entro al segundo if");
                 attribute.addFlashAttribute("error", "ATENCION: El ID del aulaVirtual no existe!");
                 return "redirect:/aulaVirtual/";
             }
         } else {
+             System.out.println("Entro al else");
             attribute.addFlashAttribute("error", "ATENCION: Error con el ID del aulaVirtual");
             return "redirect:/aulaVirtual/";
         }
@@ -112,6 +121,7 @@ public class ControladorAulaVirtual {
         model.addAttribute("clase", clase);
         model.addAttribute("asistencia", asistencia);
         model.addAttribute("calificaciones", calificaciones);
+        model.addAttribute("profesor", profesor);
         model.addAttribute("fechaString", fechaString);
         
         return "aulaVirtualDetalle";

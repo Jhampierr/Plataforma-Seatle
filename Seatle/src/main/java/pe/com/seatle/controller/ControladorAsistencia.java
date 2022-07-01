@@ -16,12 +16,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import pe.com.seatle.model.Alumno;
+import pe.com.seatle.model.AlumMate;
 import pe.com.seatle.util.CheckIP;
 import pe.com.seatle.model.Asistencia;
-import pe.com.seatle.model.Grado;
-import pe.com.seatle.model.Seccion;
-import pe.com.seatle.servicio.AlumnoService;
+import pe.com.seatle.servicio.AlumMateService;
 import pe.com.seatle.servicio.AsistenciaService;
 
 @Controller
@@ -32,7 +30,7 @@ public class ControladorAsistencia {
     private AsistenciaService asistenciaService;
     
     @Autowired
-    private AlumnoService alumnoService;
+    private AlumMateService alumMateService;
     
     String fechaString = LocalDate.now().toString();
     
@@ -53,7 +51,7 @@ public class ControladorAsistencia {
 
         
         Asistencia asistencia = null;
-        Alumno alumno = null;
+        AlumMate alumMate = null;
         
         if (idAsistencia > 0) {
             asistencia = asistenciaService.encontrarAsistencia(idAsistencia);
@@ -68,7 +66,7 @@ public class ControladorAsistencia {
         }
 
         model.addAttribute("asistencia", asistencia);
-        model.addAttribute("alumno", alumno);
+        model.addAttribute("alumMate", alumMate);
         model.addAttribute("fechaString", fechaString);
         
         return "asistenciaDetalle";
@@ -77,10 +75,10 @@ public class ControladorAsistencia {
     @GetMapping("/agregarasistencia")
     public String agregarasistencia(Model model) {
         Asistencia asistencia = new Asistencia();
-        List<Alumno> alumno = alumnoService.listarAlumno();
+        List<AlumMate> alumMate = alumMateService.listarAlumMate();
         
         model.addAttribute("asistencia", asistencia);
-        model.addAttribute("alumno", alumno);
+        model.addAttribute("alumMate", alumMate);
         model.addAttribute("fechaString", fechaString);
         
         return "asistenciaUPD";
@@ -90,11 +88,11 @@ public class ControladorAsistencia {
     public String guardarasistencia(@Valid @ModelAttribute Asistencia asistencia, BindingResult result,
             Model model, CheckIP check, RedirectAttributes attribute) {
         
-        List<Alumno> alumno = alumnoService.listarAlumno();
+        List<AlumMate> alumMate = alumMateService.listarAlumMate();
         
         if (result.hasErrors()) {
             model.addAttribute("asistencia", asistencia);
-            model.addAttribute("alumno", alumno);
+            model.addAttribute("alumMate", alumMate);
             System.out.println("Existen errores en el formulario");
             return "asistenciaUPD";
         }
@@ -132,10 +130,10 @@ public class ControladorAsistencia {
             return "asistenciaUPD";
         }
             
-        List<Alumno> alumno = alumnoService.listarAlumno();
+        List<AlumMate> alumMate = alumMateService.listarAlumMate();
         
         model.addAttribute("asistencia", asistencia);
-        model.addAttribute("alumno", alumno);
+        model.addAttribute("alumMate", alumMate);
         model.addAttribute("fechaString", fechaString);
           
         return "asistenciaUPD";

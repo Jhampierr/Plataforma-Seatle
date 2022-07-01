@@ -20,6 +20,10 @@ public class Calificaciones implements Serializable{
     @JoinColumn(name="id_clase")
     private Clase clase;
     
+    @ManyToOne
+    @JoinColumn(name="id_alum_mate")
+    private AlumMate alumMate;
+    
     private String descripcion;
     
     private String fechaUpdate;

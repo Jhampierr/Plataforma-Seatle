@@ -18,8 +18,8 @@ public class Tarea implements Serializable{
     private Long idTarea;
             
     @ManyToOne
-    @JoinColumn(name="id_materia")
-    private Materia materia;
+    @JoinColumn(name="id_tema")
+    private Tema tema;
     
     @ManyToOne
     @JoinColumn(name="id_alumno")
